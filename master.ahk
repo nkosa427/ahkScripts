@@ -52,8 +52,9 @@ PrintScreen & F23::Volume_Mute
 F24::Send, {F3}
 PrintScreen & F24::Send, ^x
 
-Pause::Send, #{Tab}
-PrintScreen & Pause::return
+Pause::return
+PrintScreen::return
+PrintScreen & Pause::Send, #{Tab}
 
 ;;;;;;;;;;;;;;;;;;;;;;;; PROGRAM KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -72,7 +73,16 @@ PrintScreen & Pause::return
 	PrintScreen & F20::Send, ^r
 	F21::Send, ^t
 	PrintScreen & F21::Send, ^w
-	PrintScreen & Pause::Send, ^+t
+	Pause & F24::Send, ^+t
+}
+
+; Keybinds for when Spotify is active
+#IfWinActive ahk_exe Spotify.exe
+{
+	F13::Send, ^{Right}
+	F16::Send, ^{Left}
+	F21::Send, {Space}
+    F18::Send, ^+{Tab}
 }
 
 ; Keybinds for when Notepad++ is active
@@ -80,6 +90,34 @@ PrintScreen & Pause::return
 {
 	F15::Send, ^{Tab}
     F18::Send, ^+{Tab}
+}
+
+; Keybinds for when MPC-HC is active
+#IfWinActive ahk_exe mpc-hc64.exe
+{
+	F13::Send, ^{PgDn}
+	F14::Send, {Right}
+	PrintScreen & F14:: Send, ^!{Right}
+	F15::Send, ^+d
+	F16::Send, ^{PgUp}
+	F17::Send, {Left}
+	PrintScreen & F17:: Send, ^!{Left}
+	F18::Send, ^+a
+	F21::Send, {Space}
+	PrintScreen & F21::Send, !x
+}
+
+; Keybinds for when Cygwin is active
+#IfWinActive ahk_exe mintty.exe
+{
+	F14::Send, ^{Insert}
+	PrintScreen & F14::Send, +{Insert}
+}
+
+; Keybinds for when Photos is active
+#IfWinActive Photos
+{
+	PrintScreen & F21::Send, ^w
 }
 
 ;;;;;;;;;;;;;;;;;;;;;;;; GAME KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
