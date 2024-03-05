@@ -68,7 +68,8 @@ PrintScreen & Pause::Send, #{Tab}
 ; Keybinds for when Browsers are active
 #IfWinActive ahk_group browsers
 {
-	F15::Send, ^{Tab}
+	F15::Send, ^{Tab}\
+	F16::CopySwitchPaste()
 	F18::Send, ^+{Tab}
 	PrintScreen & F20::Send, ^r
 	F21::Send, ^t
@@ -109,6 +110,13 @@ PrintScreen & Pause::Send, #{Tab}
 
 ; Keybinds for when Cygwin is active
 #IfWinActive ahk_exe mintty.exe
+{
+	F14::Send, ^{Insert}
+	PrintScreen & F14::Send, +{Insert}
+}
+
+; Keybinds for when electron is active
+#IfWinActive ahk_exe electron.exe
 {
 	F14::Send, ^{Insert}
 	PrintScreen & F14::Send, +{Insert}
@@ -169,3 +177,39 @@ MouseIsOver(WinTitle) {
 MButton::
     Send {LButton}{AppsKey}e
     return
+
+; Define a function to perform the copy, switch, and paste
+CopySwitchPaste() {
+    ; Store the title of the currently active window
+    WinGetTitle, originalTitle, A
+
+    ; Send Ctrl+C to copy
+    SendInput, ^c
+    Sleep, 100  ; Wait for the copying operation to complete
+
+    ; Attempt to activate the window associated with the "electron.exe" process
+    if WinExist("ahk_exe electron.exe")
+    {
+        ; Activate the window associated with "electron.exe"
+        WinActivate, ahk_exe electron.exe
+        WinWaitActive, ahk_exe electron.exe  ; Wait for it to become active
+		Sleep, 50
+        ; Send Ctrl+V to paste
+        SendInput, ^v
+		Sleep, 50
+		SendInput, {Enter}
+		Sleep, 50
+    }
+    else
+    {
+        ; If the window associated with "electron.exe" not found, show a message
+        MsgBox, The window associated with "electron.exe" is not open.
+    }
+
+    ; Switch back to the previously active window
+    ; WinActivate, %originalTitle%
+	Send, !{Tab}
+}
+
+; Define a hotkey to trigger the function
+
