@@ -1,0 +1,1 @@
+doskey sn=X:\downloads\misc\SCRIPT_stashname.cmd
