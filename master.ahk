@@ -12,6 +12,7 @@ GroupAdd, browsers, ahk_exe chrome.exe
 GroupAdd, browsers, ahk_exe msedge.exe
 
 ;;;;;;;;;;;;;;;;;;;;;;;; DEFAULT KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;F13::return
 PrintScreen & F13::Send, ^#{Right}
 
@@ -54,7 +55,7 @@ PrintScreen & F24::Send, ^x
 Pause::Send, #{Tab}
 PrintScreen & Pause::return
 
-;;;;;;;;;;;;;;;;;;;;;;;; PROGRAM SPECIFIC KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;; PROGRAM KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Keybinds for when Windows Explorer is active
 #IfWinActive ahk_class CabinetWClass
@@ -72,6 +73,50 @@ PrintScreen & Pause::return
 	F21::Send, ^t
 	PrintScreen & F21::Send, ^w
 	PrintScreen & Pause::Send, ^+t
+}
+
+; Keybinds for when Notepad++ is active
+#IfWinActive ahk_exe notepad++.exe
+{
+	F15::Send, ^{Tab}
+    F18::Send, ^+{Tab}
+}
+
+;;;;;;;;;;;;;;;;;;;;;;;; GAME KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
+
+; Keybinds for when 7DTD is active
+#IfWinActive ahk_exe 7DaysToDie.exe
+{
+	Toggle := false
+	ToggleLMB := false
+	
+	F21::Send, {Tab}
+    F24::Send, m
+	
+	PrintScreen & F15::
+	{
+		Toggle := !Toggle
+		If Toggle then
+		{
+			Send, {W Down}{Shift down}
+		} Else {
+			Send, {W Up}{Shift up}
+		}
+	}
+	return
+	
+	PrintScreen & F18::
+	{
+		ToggleLMB := !ToggleLMB
+		If ToggleLMB then
+		{
+			Send, {LButton down}  
+		} Else {
+			Send, {LButton up}  
+		}
+	}
+	return
+
 }
 
 ;;;;;;;;;;;;;;;;;;;;;;;; OTHER ;;;;;;;;;;;;;;;;;;;;;;;;
