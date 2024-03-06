@@ -10,23 +10,24 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 GroupAdd, browsers, ahk_exe firefox.exe
 GroupAdd, browsers, ahk_exe chrome.exe
 GroupAdd, browsers, ahk_exe msedge.exe
-
+ 
 ;;;;;;;;;;;;;;;;;;;;;;;; DEFAULT KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;F13::return
 PrintScreen & F13::Send, ^#{Right}
 
-F14::Send, ^c
-PrintScreen & F14::Send, ^v
+F14::copy()
+PrintScreen & F14::paste()
 
 F15::Send, {Up}
 ;PrintScreen & F15::return
 
-F16::return
+;F16::MsgBox, Option A
 PrintScreen & F16::Send, ^#{Left}
+Pause & F16::goToFirstDesktop()
 
-F17::Send, {Enter}
-PrintScreen & F17::Send, {Backspace}
+F17::enter()
+PrintScreen & F17::backspace()
 
 F18::Send, {Down}
 ;PrintScreen & F18::return
@@ -44,17 +45,17 @@ F20::Send, !{PgUp}
 ;PrintScreen & F21::return
 
 F22::Send, {Esc}
-;PrintScreen & F22::return
+PrintScreen & F22::Send, #{Tab}
 
 F23::Send, !{PgDn}
 PrintScreen & F23::Volume_Mute
 
-F24::Send, {F3}
+;F24::return
 PrintScreen & F24::Send, ^x
 
 Pause::return
 PrintScreen::return
-PrintScreen & Pause::Send, #{Tab}
+PrintScreen & Pause::return
 
 ;;;;;;;;;;;;;;;;;;;;;;;; PROGRAM KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -62,14 +63,41 @@ PrintScreen & Pause::Send, #{Tab}
 #IfWinActive ahk_class CabinetWClass
 {
     F16::Send, !{Tab}
+	PrintScreen & F20::Send, ^r
     F24::Send, {F2}
 }
 
 ; Keybinds for when Browsers are active
 #IfWinActive ahk_group browsers
 {
-	F15::Send, ^{Tab}\
-	F16::CopySwitchPaste()
+	F13::
+		stashOpen() ? stashNext() : ""
+		return
+	Pause & F13::
+		stashOpen() ? paste() : ""
+		return
+	F14::
+		stashOpen() ? shiftRight(true) : copy()
+		return
+	Pause & F14::
+		stashOpen() ? copy() : ""
+		return
+	PrintScreen & F14::
+		stashOpen() ? shiftRight(false) : paste()
+		return
+	F15::Send, ^{Tab}
+	F16::
+		stashOpen() ? stashPrev() : CopySwitchPaste()
+		return
+	F17::
+		stashOpen() ? shiftLeft(true) : enter()
+		return
+	PrintScreen & F17::
+		stashOpen() ? shiftLeft(false) : backspace()
+		return
+	Pause & F17::
+		stashOpen() ? backspace() : ""
+		return
 	F18::Send, ^+{Tab}
 	PrintScreen & F20::Send, ^r
 	F21::Send, ^t
@@ -119,7 +147,19 @@ PrintScreen & Pause::Send, #{Tab}
 #IfWinActive ahk_exe electron.exe
 {
 	F14::Send, ^{Insert}
+	F15::Send, {Right}
+	F16::activateIfOpen("firefox.exe")
+	F18::Send, {Left}
 	PrintScreen & F14::Send, +{Insert}
+}
+
+
+; Keybinds for when VSCode is active
+#IfWinActive ahk_exe Code.exe
+{
+	F15::Send, ^{PgDn}
+	F18::Send, ^{PgUp}
+	F24::Send, !{F12}
 }
 
 ; Keybinds for when Photos is active
@@ -165,51 +205,139 @@ PrintScreen & Pause::Send, #{Tab}
 
 }
 
+; Keybinds for when Warframe is active
+#IfWinActive ahk_exe Warframe.x64.exe
+{
+	F13::Send, 1
+	F14::Send, 2
+	F15::Send, 3
+	F16::Send, 4
+	Pause & F24::Send, 6>JBTBR6hcSByM6
+}
+
 ;;;;;;;;;;;;;;;;;;;;;;;; OTHER ;;;;;;;;;;;;;;;;;;;;;;;;
+
+stashOpen() {
+    ; Get the title of the active window
+    WinGetTitle, title, A
+
+    ; Check if the title contains "Stash - Chromium"
+    return InStr(title, "Stash - Chromium") > 0
+}
+
+stashNext() {
+	Send, p
+	Sleep, 5
+	Send, n
+}
+
+stashPrev() {
+	Send, p
+	Sleep, 5
+	Send, p
+}
+
+shiftRight(shift := false) {
+    if (shift)
+        Send, +{Right}
+    else
+        Send, {Right}
+}
+
+shiftLeft(shift := false) {
+    if (shift)
+        Send, +{Left}
+    else
+        Send, {Left}
+}
+
+copy() {
+	Send, ^c
+}
+
+paste() {
+	Send, ^v
+}
+
+enter() {
+	Send, {Enter}
+}
+
+backspace() {
+	Send, {Backspace}
+}
 
 MouseIsOver(WinTitle) {
     MouseGetPos,,, Win
     return WinExist(WinTitle . " ahk_id " . Win)
 }
 
-
 #If MouseIsOver("ahk_class CabinetWClass")
 MButton::
     Send {LButton}{AppsKey}e
     return
-
-; Define a function to perform the copy, switch, and paste
-CopySwitchPaste() {
-    ; Store the title of the currently active window
-    WinGetTitle, originalTitle, A
-
-    ; Send Ctrl+C to copy
-    SendInput, ^c
-    Sleep, 100  ; Wait for the copying operation to complete
-
-    ; Attempt to activate the window associated with the "electron.exe" process
-    if WinExist("ahk_exe electron.exe")
+	
+goToFirstDesktop() {
+	Loop 8
     {
-        ; Activate the window associated with "electron.exe"
-        WinActivate, ahk_exe electron.exe
-        WinWaitActive, ahk_exe electron.exe  ; Wait for it to become active
-		Sleep, 50
-        ; Send Ctrl+V to paste
-        SendInput, ^v
-		Sleep, 50
-		SendInput, {Enter}
-		Sleep, 50
+        ; Send the key combination Win+Ctrl+Left
+        Send, #^{Left}
+        
+        ; Optional: Add a short delay between each iteration to simulate human typing speed
+        Sleep, 20
+    }
+}
+
+activateIfOpen(exeName) {
+    ; Check if the specified AHK executable is already open
+    IfWinExist ahk_exe %exeName%
+    {
+        ; If the AHK executable is open, activate its window
+        WinActivate ahk_exe %exeName%
     }
     else
     {
-        ; If the window associated with "electron.exe" not found, show a message
-        MsgBox, The window associated with "electron.exe" is not open.
+        ; If the AHK executable is not open, display a message
+        MsgBox, %exeName% is not currently open.
     }
-
-    ; Switch back to the previously active window
-    ; WinActivate, %originalTitle%
-	Send, !{Tab}
 }
 
-; Define a hotkey to trigger the function
+; Define a function to perform the copy, switch, and paste
+CopySwitchPaste() {
+	; Get the active window's title
+    WinGetTitle, title, A
 
+	if !(InStr(title, "Stash - Chromium"))
+	{
+		; Store the title of the currently active window
+		WinGetTitle, originalTitle, A
+
+		; Send Ctrl+C to copy
+		SendInput, ^c
+		Sleep, 50  ; Wait for the copying operation to complete
+
+		; Attempt to activate the window associated with the "electron.exe" process
+		if WinExist("ahk_exe electron.exe")
+		{
+			; Activate the window associated with "electron.exe"
+			WinActivate, ahk_exe electron.exe
+			WinWaitActive, ahk_exe electron.exe  ; Wait for it to become active
+			Sleep, 50
+
+			; Send Ctrl+V to paste
+			paste()
+			Sleep, 50
+			SendInput, {Enter}
+			Sleep, 50
+		}
+		else
+		{
+			; If the window associated with "electron.exe" not found, show a message
+			MsgBox, The window associated with "electron.exe" is not open.
+		}
+
+		; Switch back to the previously active window
+		; WinActivate, %originalTitle%
+		Send, !{Tab}
+	}
+}
