@@ -1,7 +1,7 @@
 ﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #Persistent
 #SingleInstance, force
-; #Warn  ; Enable warnings to assist with detecting common errors.
+;#Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
@@ -20,9 +20,8 @@ F14::copy()
 PrintScreen & F14::paste()
 
 F15::Send, {Up}
-;PrintScreen & F15::return
 
-;F16::MsgBox, Option A
+;F16::return
 PrintScreen & F16::Send, ^#{Left}
 Pause & F16::goToFirstDesktop()
 
@@ -30,19 +29,15 @@ F17::enter()
 PrintScreen & F17::backspace()
 
 F18::Send, {Down}
-;PrintScreen & F18::return
 
 ;F19::return
 F19 & WheelUp::Volume_Up
 F19 & WheelDown::Volume_Down
 F19 & MButton::^a
-;PrintScreen & F19::return
 
 F20::Send, !{PgUp}
-;PrintScreen & F20::return
 
 ;F21::return
-;PrintScreen & F21::return
 
 F22::Send, {Esc}
 PrintScreen & F22::Send, #{Tab}
@@ -159,6 +154,7 @@ PrintScreen & Pause::return
 {
 	F15::Send, ^{PgDn}
 	F18::Send, ^{PgUp}
+	PrintScreen & F19::Send, ^{/}
 	F24::Send, !{F12}
 }
 
@@ -176,33 +172,14 @@ PrintScreen & Pause::return
 	Toggle := false
 	ToggleLMB := false
 	
+	PrintScreen & F15::
+		holdShiftW(Toggle)
+		return
+	PrintScreen & F18::
+		holdLMB(ToggleLMB)
+		return
 	F21::Send, {Tab}
     F24::Send, m
-	
-	PrintScreen & F15::
-	{
-		Toggle := !Toggle
-		If Toggle then
-		{
-			Send, {W Down}{Shift down}
-		} Else {
-			Send, {W Up}{Shift up}
-		}
-	}
-	return
-	
-	PrintScreen & F18::
-	{
-		ToggleLMB := !ToggleLMB
-		If ToggleLMB then
-		{
-			Send, {LButton down}  
-		} Else {
-			Send, {LButton up}  
-		}
-	}
-	return
-
 }
 
 ; Keybinds for when Warframe is active
@@ -212,10 +189,31 @@ PrintScreen & Pause::return
 	F14::Send, 2
 	F15::Send, 3
 	F16::Send, 4
+	F24::Send, m
 	Pause & F24::Send, 6>JBTBR6hcSByM6
 }
 
 ;;;;;;;;;;;;;;;;;;;;;;;; OTHER ;;;;;;;;;;;;;;;;;;;;;;;;
+
+holdShiftW(Toggle) {
+	Toggle := !Toggle
+	If Toggle then
+	{
+		Send, {W Down}{Shift down}
+	} Else {
+		Send, {W Up}{Shift up}
+	}
+}
+
+holdLMB(ToggleLMB) {
+	ToggleLMB := !ToggleLMB
+	If ToggleLMB then
+	{
+		Send, {LButton down}  
+	} Else {
+		Send, {LButton up}  
+	}
+}
 
 stashOpen() {
     ; Get the title of the active window
