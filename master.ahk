@@ -10,6 +10,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 GroupAdd, browsers, ahk_exe firefox.exe
 GroupAdd, browsers, ahk_exe chrome.exe
 GroupAdd, browsers, ahk_exe msedge.exe
+GroupAdd, browsers, ahk_exe AnyDesk.exe
  
 ;;;;;;;;;;;;;;;;;;;;;;;; DEFAULT KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -23,7 +24,7 @@ F15::Send, {Up}
 
 ;F16::return
 PrintScreen & F16::Send, ^#{Left}
-Pause & F16::goToFirstDesktop()
+NumpadDot & F16::goToFirstDesktop()
 
 F17::enter()
 PrintScreen & F17::backspace()
@@ -34,6 +35,7 @@ F18::Send, {Down}
 F19 & WheelUp::Volume_Up
 F19 & WheelDown::Volume_Down
 F19 & MButton::^a
+PrintScreen & F19::Send, ^a
 
 F20::Send, !{PgUp}
 
@@ -48,9 +50,9 @@ PrintScreen & F23::Volume_Mute
 ;F24::return
 PrintScreen & F24::Send, ^x
 
-Pause::return
+NumpadDot::return
 PrintScreen::return
-PrintScreen & Pause::return
+PrintScreen & NumpadDot::return
 
 ;;;;;;;;;;;;;;;;;;;;;;;; PROGRAM KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -68,13 +70,13 @@ PrintScreen & Pause::return
 	F13::
 		stashOpen() ? stashNext() : ""
 		return
-	Pause & F13::
+	NumpadDot & F13::
 		stashOpen() ? paste() : ""
 		return
 	F14::
 		stashOpen() ? shiftRight(true) : copy()
 		return
-	Pause & F14::
+	NumpadDot & F14::
 		stashOpen() ? copy() : ""
 		return
 	PrintScreen & F14::
@@ -90,14 +92,14 @@ PrintScreen & Pause::return
 	PrintScreen & F17::
 		stashOpen() ? shiftLeft(false) : backspace()
 		return
-	Pause & F17::
+	NumpadDot & F17::
 		stashOpen() ? backspace() : ""
 		return
 	F18::Send, ^+{Tab}
 	PrintScreen & F20::Send, ^r
 	F21::Send, ^t
 	PrintScreen & F21::Send, ^w
-	Pause & F24::Send, ^+t
+	NumpadDot & F24::Send, ^+t
 }
 
 ; Keybinds for when Spotify is active
@@ -159,9 +161,11 @@ PrintScreen & Pause::return
 }
 
 ; Keybinds for when Photos is active
-#IfWinActive Photos
+#IfWinActive ahk_exe ApplicationFrameHost.exe
 {
-	PrintScreen & F21::Send, ^w
+	if (winHasTitle("Photos")) {
+		PrintScreen & F19::Send, ^w
+	}
 }
 
 ;;;;;;;;;;;;;;;;;;;;;;;; GAME KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
@@ -190,7 +194,7 @@ PrintScreen & Pause::return
 	F15::Send, 3
 	F16::Send, 4
 	F24::Send, m
-	Pause & F24::Send, 6>JBTBR6hcSByM6
+	NumpadDot & F24::Send, gggggG{^}6
 }
 
 ;;;;;;;;;;;;;;;;;;;;;;;; OTHER ;;;;;;;;;;;;;;;;;;;;;;;;
@@ -216,11 +220,16 @@ holdLMB(ToggleLMB) {
 }
 
 stashOpen() {
-    ; Get the title of the active window
+	; Check if the title contains "Stash - Chromium"
+    return winHasTitle("Stash - Chromium")
+}
+
+winHasTitle(name) {
+	; Get the title of the active window
     WinGetTitle, title, A
 
-    ; Check if the title contains "Stash - Chromium"
-    return InStr(title, "Stash - Chromium") > 0
+    ; Check if the title contains name
+    return InStr(title, name) > 0
 }
 
 stashNext() {
@@ -282,7 +291,7 @@ goToFirstDesktop() {
         Send, #^{Left}
         
         ; Optional: Add a short delay between each iteration to simulate human typing speed
-        Sleep, 20
+        Sleep, 30
     }
 }
 
