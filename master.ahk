@@ -164,11 +164,19 @@ PrintScreen & NumpadDot::return
 #IfWinActive ahk_exe ApplicationFrameHost.exe
 {
 	if (winHasTitle("Photos")) {
+		F16 & WheelUp::Send, ^{=}
+		F16 & WheelDown::Send, ^{-}
 		PrintScreen & F19::Send, ^w
+		F22::Send, ^0
 	}
 }
 
 ;;;;;;;;;;;;;;;;;;;;;;;; GAME KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
+
+#IfWinActive ahk_exe ReadyOrNot-Win64-Shipping.exe
+{
+	F19::Send, p
+}
 
 ; Keybinds for when 7DTD is active
 #IfWinActive ahk_exe 7DaysToDie.exe
@@ -195,6 +203,30 @@ PrintScreen & NumpadDot::return
 	F16::Send, 4
 	F24::Send, m
 	NumpadDot & F24::Send, gggggG{^}6
+}
+
+#IfWinActive ahk_exe CivilizationVI_DX12.exe
+{
+	F15::Send, .
+	F18::Send, ,
+}
+
+#IfWinActive ahk_exe Factorio.exe
+{
+	F13::Send, r
+	F16::Send, +r
+	F18::Send, q
+	F21::Send, e
+	F24::Send, m
+	PrintScreen & F24::Send, b
+}
+
+#IfWinActive ahk_exe GRB.exe
+{
+	F13::Send, 1
+	F14::Send, 2
+	F15::Send, 3
+	F22::SendInput, {Esc}
 }
 
 ;;;;;;;;;;;;;;;;;;;;;;;; OTHER ;;;;;;;;;;;;;;;;;;;;;;;;
@@ -291,7 +323,7 @@ goToFirstDesktop() {
         Send, #^{Left}
         
         ; Optional: Add a short delay between each iteration to simulate human typing speed
-        Sleep, 30
+        Sleep, 10
     }
 }
 
