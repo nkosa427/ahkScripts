@@ -14,75 +14,126 @@ GroupAdd, browsers, ahk_exe AnyDesk.exe
  
 ;;;;;;;;;;;;;;;;;;;;;;;; DEFAULT KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
 
-;F13::return
-PrintScreen & F13::Send, ^#{Right}
 
-F14::copy()
-PrintScreen & F14::paste()
+	;------------------------------------------ No command for F13
+	;F13::return
 
-F15::Send, {Up}
+	;------------------------------------------ Switch to next desktop (Ctrl+Win+Right)
+	PrintScreen & F13::Send, ^#{Right}
 
-;F16::return
-PrintScreen & F16::Send, ^#{Left}
-NumpadDot & F16::goToFirstDesktop()
+	;------------------------------------------ Copy (Depends on window)
+	F14::copy()	;
 
-F17::enter()
-PrintScreen & F17::backspace()
+	;------------------------------------------ Paste (Depends on window)
+	PrintScreen & F14::paste()
 
-F18::Send, {Down}
+	;------------------------------------------ Up Arrow (Up)
+	F15::Send, {Up}
 
-;F19::return
-F19 & WheelUp::Volume_Up
-F19 & WheelDown::Volume_Down
-F19 & MButton::^a
-PrintScreen & F19::Send, ^a
+	;------------------------------------------ No command for F16
+	;F16::return
 
-F20::Send, !{PgUp}
+	;------------------------------------------ Switch to previous desktop (Ctrl+Win+Left)
+	PrintScreen & F16::Send, ^#{Left}
 
-;F21::return
+	;------------------------------------------ Go the first desktop (Ctrl+Win+Left several times)
+	NumpadMult & F16::goToFirstDesktop()
 
-F22::Send, {Esc}
-PrintScreen & F22::Send, #{Tab}
+	;------------------------------------------ Enter (Enter)
+	F17::enter()
 
-F23::Send, !{PgDn}
-PrintScreen & F23::Volume_Mute
+	;------------------------------------------ Backspace (Backspace)
+	PrintScreen & F17::backspace()
 
-;F24::return
-PrintScreen & F24::Send, ^x
+	;------------------------------------------ Down Arrow (Down)
+	F18::Send, {Down}
 
-NumpadDot::return
-PrintScreen::return
-PrintScreen & NumpadDot::return
+	;------------------------------------------ No command for F19
+	;F19::return
+
+	;------------------------------------------ Volume Up (F19 + Scroll Up)
+	F19 & WheelUp::Volume_Up
+
+	;------------------------------------------ Volume Down (F19 + Scroll Down)
+	F19 & WheelDown::Volume_Down
+
+	;------------------------------------------ Select All (Ctrl+A)
+	F19 & MButton::^a
+
+	;------------------------------------------ Select All (Ctrl+A)
+	PrintScreen & F19::Send, ^a
+
+	;------------------------------------------ Brightness Up (Alt+PgUp)
+	F20::Send, !{PgUp}
+
+	;------------------------------------------ Delete (del)
+	NumpadMult & F20::Send, {Del}
+
+	;------------------------------------------ No command for F21
+	;F21::return
+
+	;------------------------------------------ Escape (Esc)
+	F22::Send, {Esc}
+
+	;------------------------------------------ Task View (Win+Tab)
+	PrintScreen & F22::Send, #{Tab}
+
+	;------------------------------------------ Brightness Down (Alt+PgDn)
+	F23::Send, !{PgDn}
+
+	;------------------------------------------ Volume Mute (F23)
+	PrintScreen & F23::Volume_Mute
+
+	;------------------------------------------ No command for F24
+	;F24::return
+
+	;------------------------------------------ Cut (Ctrl+X)
+	F24::Send, ^x
+
+	;------------------------------------------ Close (Depends on window)
+	PrintScreen & F24::close()
+
+	NumpadMult::return
+	PrintScreen::return
+	PrintScreen & NumpadMult::return
 
 ;;;;;;;;;;;;;;;;;;;;;;;; PROGRAM KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Keybinds for when Windows Explorer is active
 #IfWinActive ahk_class CabinetWClass
 {
-    F16::Send, !{Tab}
+	F13::
+		Send, {Shift down}
+		KeyWait, F13
+		Send, {Shift up}
+		return
+	F16::Send, !{Tab}
+	PrintScreen & F18::Send, {F2}
 	PrintScreen & F20::Send, ^r
-    F24::Send, {F2}
 }
 
 ; Keybinds for when Browsers are active
 #IfWinActive ahk_group browsers
 {
 	F13::
-		stashOpen() ? stashNext() : ""
+		stashOpen() ? stashNext() : copyURL()
 		return
-	NumpadDot & F13::
+	NumpadMult & F13::
 		stashOpen() ? paste() : ""
 		return
 	F14::
 		stashOpen() ? shiftRight(true) : copy()
 		return
-	NumpadDot & F14::
+	NumpadMult & F14::
 		stashOpen() ? copy() : ""
 		return
 	PrintScreen & F14::
 		stashOpen() ? shiftRight(false) : paste()
 		return
-	F15::Send, ^{Tab}
+	F15::nextTab()
+	NumpadMult & F15::
+		stashOpen() ? sendStashTag("MMF") : ""
+		return
 	F16::
 		stashOpen() ? stashPrev() : CopySwitchPaste()
 		return
@@ -92,14 +143,25 @@ PrintScreen & NumpadDot::return
 	PrintScreen & F17::
 		stashOpen() ? shiftLeft(false) : backspace()
 		return
-	NumpadDot & F17::
+	NumpadMult & F17::
 		stashOpen() ? backspace() : ""
 		return
-	F18::Send, ^+{Tab}
+	F18::prevTab()
+	PrintScreen & F18::
+		stashOpen() ? sendStashTag("SHARED") : bitwardenFill()
+		return
+	NumpadMult & F18::bitwardenFill()
+	;F19::
+		;stashOpen() ? stashPrev() : CopySwitchPasteMod()
+		;return
+	NumpadMult & F19::
+		stashOpen() ? "" : CopySwitchPasteMod()
+		return
 	PrintScreen & F20::Send, ^r
 	F21::Send, ^t
-	PrintScreen & F21::Send, ^w
-	NumpadDot & F24::Send, ^+t
+	PrintScreen & F21::duplicateTab()
+	; PrintScreen & F24::close()
+	NumpadMult & F24::Send, ^+t
 }
 
 ; Keybinds for when Spotify is active
@@ -130,7 +192,7 @@ PrintScreen & NumpadDot::return
 	PrintScreen & F17:: Send, ^!{Left}
 	F18::Send, ^+a
 	F21::Send, {Space}
-	PrintScreen & F21::Send, !x
+	PrintScreen & F21::Send, ^c
 }
 
 ; Keybinds for when Cygwin is active
@@ -154,10 +216,11 @@ PrintScreen & NumpadDot::return
 ; Keybinds for when VSCode is active
 #IfWinActive ahk_exe Code.exe
 {
+	F13::Send, !{F12}	; Peek Definition
 	F15::Send, ^{PgDn}
 	F18::Send, ^{PgUp}
+	F19::Send, ^{i}
 	PrintScreen & F19::Send, ^{/}
-	F24::Send, !{F12}
 }
 
 ; Keybinds for when Photos is active
@@ -171,7 +234,86 @@ PrintScreen & NumpadDot::return
 	}
 }
 
+; Keybinds for when Vidupe is active
+#IfWinActive, ahk_exe Vidupe.exe
+{
+	F13::
+		Send, {Left}
+		Sleep, 125
+		Send, {Left}
+		Sleep, 150
+		Send, {Enter}
+		Sleep, 125
+        Send, {Right}
+        Sleep, 125
+        Send, {Right}
+		Sleep, 150
+        Send, {Enter}
+        ; Sleep, 50
+        ; Send, {Enter}
+        return
+	F15::
+		Send, {Right}
+		Sleep, 125
+		Send, {Right}
+		Sleep, 150
+		Send, {Enter}
+		Sleep, 125
+        Send, {Left}
+        Sleep, 125
+        Send, {Left}
+		Sleep, 150
+        Send, {Enter}
+        ; Sleep, 50
+        ; Send, {Enter}
+        return
+
+}
+
+; Keybinds for altserver
+#IfWinActive, ahk_exe AltServer.exe
+{
+	F13::Send, nickchase5146@gmail.com
+	F16::Send, 6h{#}hJRlX0gGMXv
+}
+
 ;;;;;;;;;;;;;;;;;;;;;;;; GAME KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
+
+#IfWinActive ahk_exe EscapeFromTarkov.exe
+{
+	NumpadMult & F13::Send, y
+	F21::Send, {Tab}
+	PrintScreen & F23::Send, {F11}
+	F24::
+		Send, {m down}
+		KeyWait, F24
+		Send, {m up}
+		return
+	
+}
+
+#IfWinActive ahk_exe Car Mechanic Simulator 2021.exe
+{
+	F18::SendInput, b
+	F24::Send, b
+	F13::SendPlay, b
+}
+
+#IfWinActive ahk_class Arma 3
+{
+	F13::Send, {NumpadAdd}
+	F14::Send, {LAlt}
+	F16::Send, {NumpadSub}
+	F19::Send, {NumpadEnter}
+	F21::Send, i
+	F22::Send, {Esc}
+	F24::Send, m
+}
+
+#IfWinActive ahk_exe payday2_win32_release.exe
+{
+	F22::SendInput, {Esc}
+}
 
 #IfWinActive ahk_exe ReadyOrNot-Win64-Shipping.exe
 {
@@ -202,7 +344,7 @@ PrintScreen & NumpadDot::return
 	F15::Send, 3
 	F16::Send, 4
 	F24::Send, m
-	NumpadDot & F24::Send, gggggG{^}6
+	NumpadMult & F24::Send, gggggG{^}6
 }
 
 #IfWinActive ahk_exe CivilizationVI_DX12.exe
@@ -231,6 +373,32 @@ PrintScreen & NumpadDot::return
 
 ;;;;;;;;;;;;;;;;;;;;;;;; OTHER ;;;;;;;;;;;;;;;;;;;;;;;;
 
+nextTab() {
+	Send, ^{Tab}
+}
+
+prevTab() {
+	Send, ^+{Tab}
+}
+
+close() {
+	if WinActive("ahk_group browsers") {
+			Send, ^w
+			return
+	}
+
+	activeExe := getActiveWindowExe()
+	
+	if (activeExe = "mpc-hc64.exe") {
+		Send, !x
+		return
+	}
+
+	ToolTip, %activeExe% not supported
+	Sleep, 1000
+	ToolTip
+}
+
 holdShiftW(Toggle) {
 	Toggle := !Toggle
 	If Toggle then
@@ -251,9 +419,14 @@ holdLMB(ToggleLMB) {
 	}
 }
 
+bitwardenFill() {
+	Send, ^+l
+}
+
 stashOpen() {
 	; Check if the title contains "Stash - Chromium"
     return winHasTitle("Stash - Chromium")
+	; return winHasTitle("Stash — Mozilla Firefox")
 }
 
 winHasTitle(name) {
@@ -262,6 +435,22 @@ winHasTitle(name) {
 
     ; Check if the title contains name
     return InStr(title, name) > 0
+}
+
+sendStashTag(text) {
+	;Send, ^+k
+	;Sleep, 300
+	;Send, %text%
+	;Send, {Enter}
+
+	Send, {Alt down}
+	Sleep, 1
+	Send, q
+	Sleep, 1
+	Send, {Alt up}
+	Send, %text%
+	Sleep, 1
+	Send, {Enter}
 }
 
 stashNext() {
@@ -290,6 +479,17 @@ shiftLeft(shift := false) {
         Send, {Left}
 }
 
+copyURL() {
+	#IfWinActive ahk_exe chrome.exe
+	{
+		Send, ^l
+		Sleep, 150
+		Send, ^c
+		Sleep, 50
+		Send, !{Tab}
+	}
+}
+
 copy() {
 	Send, ^c
 }
@@ -306,9 +506,27 @@ backspace() {
 	Send, {Backspace}
 }
 
+
+
 MouseIsOver(WinTitle) {
     MouseGetPos,,, Win
     return WinExist(WinTitle . " ahk_id " . Win)
+}
+
+duplicateTab() {
+	; Get the active window's executable
+    WinGet, activeWindow, ProcessName, A
+    
+    ; Check if Firefox is active
+    if (activeWindow = "firefox.exe") {
+        Send, ^l
+        Sleep, 50
+        Send, !{Enter}
+    }
+    ; Check if Edge is active
+    else if (activeWindow = "msedge.exe") {
+        Send, ^+k
+    }
 }
 
 #If MouseIsOver("ahk_class CabinetWClass")
@@ -329,16 +547,21 @@ goToFirstDesktop() {
 
 activateIfOpen(exeName) {
     ; Check if the specified AHK executable is already open
-    IfWinExist ahk_exe %exeName%
-    {
-        ; If the AHK executable is open, activate its window
-        WinActivate ahk_exe %exeName%
-    }
-    else
-    {
-        ; If the AHK executable is not open, display a message
-        MsgBox, %exeName% is not currently open.
-    }
+	IfWinExist ahk_exe %exeName%
+	{
+			; If the AHK executable is open, activate its window
+			WinActivate ahk_exe %exeName%
+	}
+	else
+	{
+			; If the AHK executable is not open, display a message
+			MsgBox, %exeName% is not currently open.
+	}
+}
+
+getActiveWindowExe() {
+	WinGet, activeWindow, ProcessName, A
+	return activeWindow
 }
 
 ; Define a function to perform the copy, switch, and paste
@@ -353,6 +576,47 @@ CopySwitchPaste() {
 
 		; Send Ctrl+C to copy
 		SendInput, ^c
+		Sleep, 50  ; Wait for the copying operation to complete
+
+		; Attempt to activate the window associated with the "electron.exe" process
+		if WinExist("ahk_exe electron.exe")
+		{
+			; Activate the window associated with "electron.exe"
+			WinActivate, ahk_exe electron.exe
+			WinWaitActive, ahk_exe electron.exe  ; Wait for it to become active
+			Sleep, 50
+
+			; Send Ctrl+V to paste
+			paste()
+			Sleep, 50
+			SendInput, {Enter}
+			Sleep, 50
+		}
+		else
+		{
+			; If the window associated with "electron.exe" not found, show a message
+			MsgBox, The window associated with "electron.exe" is not open.
+		}
+
+		; Switch back to the previously active window
+		; WinActivate, %originalTitle%
+		Send, !{Tab}
+	}
+}
+
+CopySwitchPasteMod() {
+	; Get the active window's title
+    WinGetTitle, title, A
+
+	if !(InStr(title, "Stash - Chromium"))
+	{
+		; Store the title of the currently active window
+		WinGetTitle, originalTitle, A
+
+		; Send Ctrl+C to copy
+		SendInput, ^c
+		Sleep, 10
+		SendInput, ^+v
 		Sleep, 50  ; Wait for the copying operation to complete
 
 		; Attempt to activate the window associated with the "electron.exe" process
