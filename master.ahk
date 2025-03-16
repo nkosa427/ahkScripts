@@ -1,4 +1,5 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+﻿#Requires AutoHotkey v1.1
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #Persistent
 #SingleInstance, force
 ;#Warn  ; Enable warnings to assist with detecting common errors.
@@ -214,7 +215,7 @@ GroupAdd, browsers, ahk_exe AnyDesk.exe
 
 
 ; Keybinds for when VSCode is active
-#IfWinActive ahk_exe Code.exe
+#IfWinActive ahk_exe Code.exe OR ahk_exe Code - Insiders.exe
 {
 	F13::Send, !{F12}	; Peek Definition
 	F15::Send, ^{PgDn}
