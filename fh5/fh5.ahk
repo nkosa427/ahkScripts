@@ -96,52 +96,6 @@ RunAutoSequence() {
     ShowMessage("Auto sequence completed successfully", 2000)
 }
 
-; Add global variable for loop control
-global isRunning := false
-
-F3::
-{
-    try {
-        ; Define the coordinates and save path
-        x := 324
-        y := 182
-        width := 100
-        height := 100
-        savePath := A_WorkingDir . "\screenshot.png"
-
-        ; Capture the screenshot
-        CaptureScreenshot(x, y, width, height, savePath)
-        ShowMessage("Screenshot captured and saved to " savePath)
-    } catch Error as e {
-        ShowMessage("Error: " e.Message)
-    }
-}
-
-F1::  
-{
-    global isRunning
-    if (isRunning) {
-        isRunning := false
-        ShowMessage("Stopping auto-sequence loop")
-        return
-    }
-
-    isRunning := true
-    
-    while (isRunning) { 
-        RunAutoSequence()
-        ShowMessage("Auto-sequence loop completed", 9000)
-
-        if !WinActive("Forza Horizon 5") {
-            isRunning := false
-            ShowMessage("Forza Horizon 5 window lost focus - stopping")
-            break
-        }
-        Sleep 9000
-        ShowMessage("Starting auto-sequence loop")
-    }
-}
-
 VerifyScreenMatch(x, y, width, height, referencePath, similarity := 0.9) {
     if !FileExist(referencePath)
         throw ValueError("Reference image does not exist: " referencePath)
@@ -205,4 +159,71 @@ VerifyScreenMatch(x, y, width, height, referencePath, similarity := 0.9) {
     ; Return true if similarity threshold is met
     ShowMessage(Format("Match count: {} / {} ({}%)", matchCount, totalPixels, Round((matchCount / totalPixels) * 100, 2)), 3000)
     return (matchCount / totalPixels) >= similarity
+}
+
+; Add global variable for loop control
+global isRunning := false
+
+F3::
+{
+    try {
+        ; Define the coordinates and save path
+        x := 324
+        y := 182
+        width := 100
+        height := 100
+        savePath := A_WorkingDir . "\screenshot.png"
+
+        ; Capture the screenshot
+        CaptureScreenshot(x, y, width, height, savePath)
+        ShowMessage("Screenshot captured and saved to " savePath)
+    } catch Error as e {
+        ShowMessage("Error: " e.Message)
+    }
+}
+
+F2::
+{
+    try {
+        ; Define the coordinates and save path
+        x := 324
+        y := 182
+        width := 100
+        height := 25
+        referencePath := A_WorkingDir . "\pause_campaign_324x182_w100_h25.png"
+
+        ; Verify the screen match
+        if VerifyScreenMatch(x, y, width, height, referencePath) {
+            ShowMessage("Screen verification passed")
+        } else {
+            ShowMessage("Screen verification failed")
+        }
+    } catch Error as e {
+        ShowMessage("Error: " e.Message)
+    }
+}
+
+F1::  
+{
+    global isRunning
+    if (isRunning) {
+        isRunning := false
+        ShowMessage("Stopping auto-sequence loop")
+        return
+    }
+
+    isRunning := true
+    
+    while (isRunning) { 
+        RunAutoSequence()
+        ShowMessage("Auto-sequence loop completed", 9000)
+
+        if !WinActive("Forza Horizon 5") {
+            isRunning := false
+            ShowMessage("Forza Horizon 5 window lost focus - stopping")
+            break
+        }
+        Sleep 9000
+        ShowMessage("Starting auto-sequence loop")
+    }
 }
