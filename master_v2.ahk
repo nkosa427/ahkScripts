@@ -118,6 +118,9 @@ GroupAdd("browsers", "ahk_exe AnyDesk.exe")
 
 ; Keybinds for when Windows Explorer is active
 #HotIf WinActive("ahk_class CabinetWClass")
+MButton:: {
+    Send("{LButton}{AppsKey}e")
+}
 F13:: {
 	Send("{Shift down}")
 	KeyWait("F13")
@@ -551,12 +554,6 @@ duplicateTab() {
         Send("^+k")
     }
 }
-
-#HotIf MouseIsOver("ahk_class CabinetWClass")
-MButton:: {
-    Send("{LButton}{AppsKey}e")
-}
-#HotIf
 
 goToFirstDesktop() {
 	Loop 8 {
