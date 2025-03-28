@@ -23,21 +23,7 @@ GroupAdd("browsers", "ahk_exe AnyDesk.exe")
 #include "%A_ScriptDir%\programs\notepad++.ahk"
 #include "%A_ScriptDir%\programs\mpc-hc.ahk"
 #include "%A_ScriptDir%\programs\mintty.ahk"
-
-; Keybinds for when Windows Explorer is active
-#HotIf WinActive("ahk_class CabinetWClass")
-MButton:: {
-    Send("{LButton}{AppsKey}e")
-}
-F13:: {
-	Send("{Shift down}")
-	KeyWait("F13")
-	Send("{Shift up}")
-}
-F16:: Send("!{Tab}")
-PrintScreen & F18:: Send("{F2}")
-PrintScreen & F20:: Send("^r")
-#HotIf
+#include "%A_ScriptDir%\programs\explorer.ahk" ; Include explorer keybinds
 
 ; Keybinds for when electron is active
 #HotIf WinActive("ahk_exe electron.exe")
