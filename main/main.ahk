@@ -24,6 +24,7 @@ GroupAdd("browsers", "ahk_exe AnyDesk.exe")
 #include "%A_ScriptDir%\programs\mpc-hc.ahk"
 #include "%A_ScriptDir%\programs\mintty.ahk"
 #include "%A_ScriptDir%\programs\explorer.ahk" ; Include explorer keybinds
+#include "%A_ScriptDir%\programs\vscode.ahk" ; Include VSCode keybinds
 
 ; Keybinds for when electron is active
 #HotIf WinActive("ahk_exe electron.exe")
@@ -32,15 +33,6 @@ F15:: Send("{Right}")
 F16:: activateIfOpen("firefox.exe")
 F18:: Send("{Left}")
 PrintScreen & F14:: Send("+{Insert}")
-#HotIf
-
-; Keybinds for when VSCode is active
-#HotIf WinActive("ahk_exe Code.exe") or WinActive("ahk_exe Code - Insiders.exe")
-F13:: Send("!{F12}")	; Peek Definition
-F15:: Send("^{PgDn}")
-F18:: Send("^{PgUp}")
-F19:: Send("^{i}")
-PrintScreen & F19:: Send("^{/}")
 #HotIf
 
 ; Keybinds for when Photos is active
