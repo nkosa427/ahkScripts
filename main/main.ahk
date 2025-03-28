@@ -39,23 +39,8 @@ GroupAdd("browsers", "ahk_exe AnyDesk.exe")
 #include "%A_ScriptDir%\games\civ6.ahk" ; Include Civilization VI keybinds
 #include "%A_ScriptDir%\games\factorio.ahk" ; Include Factorio keybinds
 #include "%A_ScriptDir%\games\grb.ahk" ; Include GRB keybinds
-
-#HotIf WinActive("ahk_exe EscapeFromTarkov.exe")
-NumpadMult & F13:: Send("y")
-F21:: Send("{Tab}")
-PrintScreen & F23:: Send("{F11}")
-F24:: {
-	Send("{m down}")
-	KeyWait("F24")
-	Send("{m up}")
-}
-#HotIf
-
-#HotIf WinActive("ahk_exe Car Mechanic Simulator 2021.exe")
-F18:: Send("b")
-F24:: Send("b")
-F13:: Send("b")
-#HotIf
+#include "%A_ScriptDir%\games\tarkov.ahk" ; Include Escape from Tarkov keybinds
+#include "%A_ScriptDir%\games\cms2021.ahk" ; Include Car Mechanic Simulator 2021 keybinds
 
 #HotIf WinActive("ahk_exe CivilizationVI_DX12.exe")
 F15:: Send(".")
