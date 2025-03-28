@@ -42,11 +42,6 @@ GroupAdd("browsers", "ahk_exe AnyDesk.exe")
 #include "%A_ScriptDir%\games\tarkov.ahk" ; Include Escape from Tarkov keybinds
 #include "%A_ScriptDir%\games\cms2021.ahk" ; Include Car Mechanic Simulator 2021 keybinds
 
-#HotIf WinActive("ahk_exe CivilizationVI_DX12.exe")
-F15:: Send(".")
-F18:: Send(",")
-#HotIf
-
 ;;;;;;;;;;;;;;;;;;;;;;;; OTHER ;;;;;;;;;;;;;;;;;;;;;;;;
 
 nextTab() {
