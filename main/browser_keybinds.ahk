@@ -6,8 +6,8 @@
 F13:: {
 	if (stashOpen())
 		stashNext()
-	else
-		copyURL()
+	; else
+	; 	copyURL()
 }
 NumpadMult & F13:: {
 	if (stashOpen())

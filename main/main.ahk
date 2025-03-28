@@ -19,6 +19,10 @@ GroupAdd("browsers", "ahk_exe AnyDesk.exe")
 
 ;;;;;;;;;;;;;;;;;;;;;;;; PROGRAM KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
 
+#include "%A_ScriptDir%\programs\spotify.ahk"
+#include "%A_ScriptDir%\programs\notepad++.ahk"
+#include "%A_ScriptDir%\programs\mpc-hc.ahk"
+
 ; Keybinds for when Windows Explorer is active
 #HotIf WinActive("ahk_class CabinetWClass")
 MButton:: {
@@ -34,35 +38,33 @@ PrintScreen & F18:: Send("{F2}")
 PrintScreen & F20:: Send("^r")
 #HotIf
 
-; Keybinds for when Browsers are active - MOVED TO browser_keybinds.ahk
+; ; Keybinds for when Spotify is active
+; #HotIf WinActive("ahk_exe Spotify.exe")
+; F13:: Send("^{Right}")
+; F16:: Send("^{Left}")
+; F21:: Send("{Space}")
+; F18:: Send("^+{Tab}")
+; #HotIf
 
-; Keybinds for when Spotify is active
-#HotIf WinActive("ahk_exe Spotify.exe")
-F13:: Send("^{Right}")
-F16:: Send("^{Left}")
-F21:: Send("{Space}")
-F18:: Send("^+{Tab}")
-#HotIf
+; ; Keybinds for when Notepad++ is active
+; #HotIf WinActive("ahk_exe notepad++.exe")
+; F15:: Send("^{Tab}")
+; F18:: Send("^+{Tab}")
+; #HotIf
 
-; Keybinds for when Notepad++ is active
-#HotIf WinActive("ahk_exe notepad++.exe")
-F15:: Send("^{Tab}")
-F18:: Send("^+{Tab}")
-#HotIf
-
-; Keybinds for when MPC-HC is active
-#HotIf WinActive("ahk_exe mpc-hc64.exe")
-F13:: Send("^{PgDn}")
-F14:: Send("{Right}")
-PrintScreen & F14:: Send("^!{Right}")
-F15:: Send("^+d")
-F16:: Send("^{PgUp}")
-F17:: Send("{Left}")
-PrintScreen & F17:: Send("^!{Left}")
-F18:: Send("^+a")
-F21:: Send("{Space}")
-PrintScreen & F21:: Send("^c")
-#HotIf
+; ; Keybinds for when MPC-HC is active
+; #HotIf WinActive("ahk_exe mpc-hc64.exe")
+; F13:: Send("^{PgDn}")
+; F14:: Send("{Right}")
+; PrintScreen & F14:: Send("^!{Right}")
+; F15:: Send("^+d")
+; F16:: Send("^{PgUp}")
+; F17:: Send("{Left}")
+; PrintScreen & F17:: Send("^!{Left}")
+; F18:: Send("^+a")
+; F21:: Send("{Space}")
+; PrintScreen & F21:: Send("^c")
+; #HotIf
 
 ; Keybinds for when Cygwin is active
 #HotIf WinActive("ahk_exe mintty.exe")
