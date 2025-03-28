@@ -1,3 +1,4 @@
+global tmuxWaitingForConfirm := false
 
 #HotIf WinActive("ahk_exe mintty.exe")
 F14:: Send("^{Insert}")

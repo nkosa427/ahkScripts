@@ -93,7 +93,8 @@
 	F24:: Send("^x")
 
 	;------------------------------------------ Close (Depends on window)
-	PrintScreen & F24:: close()
+	PrintScreen & F24:: {
+	}
 
 	NumpadMult:: {
 	}

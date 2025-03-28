@@ -3,11 +3,6 @@
 SendMode "Input"  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 
-; Global variables
-global tmuxWaitingForConfirm := false
-
-;;;;;;;;;;;;;;;;;;;;;;;; GROUPS ;;;;;;;;;;;;;;;;;;;;;;;;
-
 ; Include default keybinds
 #include "%A_ScriptDir%\default_keybinds.ahk"
 #include "%A_ScriptDir%\browser_keybinds.ahk" ; Include browser keybinds
@@ -38,54 +33,6 @@ global tmuxWaitingForConfirm := false
 #include "%A_ScriptDir%\games\cms2021.ahk" ; Include Car Mechanic Simulator 2021 keybinds
 
 ;;;;;;;;;;;;;;;;;;;;;;;; FUNCTIONS ;;;;;;;;;;;;;;;;;;;;;;;;
-
-nextTab() {
-	Send("^{Tab}")
-}
-
-prevTab() {
-	Send("^+{Tab}")
-}
-
-close() {
-	if WinActive("ahk_group browsers") {
-		Send("^w")
-		return
-	}
-
-	activeExe := getActiveWindowExe()
-	
-	if (activeExe = "mpc-hc64.exe") {
-		Send("!x")
-		return
-	}
-
-	ToolTip(activeExe . " not supported")
-	Sleep(1000)
-	ToolTip("")
-}
-
-holdShiftW(Toggle) {
-	Toggle := !Toggle
-	If Toggle {
-		Send("{W Down}{Shift down}")
-	} Else {
-		Send("{W Up}{Shift up}")
-	}
-}
-
-holdLMB(ToggleLMB) {
-	ToggleLMB := !ToggleLMB
-	If ToggleLMB {
-		Send("{LButton down}")
-	} Else {
-		Send("{LButton up}")
-	}
-}
-
-bitwardenFill() {
-	Send("^+l")
-}
 
 stashOpen() {
 	; Check if the title contains "Stash - Chromium"

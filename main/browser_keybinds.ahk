@@ -33,7 +33,7 @@ PrintScreen & F14:: {
 	else
 		paste()
 }
-F15:: nextTab()
+F15:: BrowserFunctions.nextTab()
 NumpadMult & F15:: {
 	if (stashOpen())
 		sendStashTag("MMF")
@@ -60,14 +60,12 @@ NumpadMult & F17:: {
 	if (stashOpen())
 		backspace()
 }
-F18:: prevTab()
+F18:: BrowserFunctions.prevTab()
 PrintScreen & F18:: {
 	if (stashOpen())
 		sendStashTag("SHARED")
-	else
-		bitwardenFill()
 }
-NumpadMult & F18:: bitwardenFill()
+NumpadMult & F18:: BrowserFunctions.bitwardenFill()
 NumpadMult & F19:: {
 	if (!stashOpen())
 		CopySwitchPasteMod()
@@ -75,5 +73,20 @@ NumpadMult & F19:: {
 PrintScreen & F20:: Send("^r")
 F21:: Send("^t")
 PrintScreen & F21:: duplicateTab()
+PrintScreen & F24:: Send("^w")
 NumpadMult & F24:: Send("^+t")
 #HotIf
+
+class BrowserFunctions {
+	static nextTab() {
+		Send("^{Tab}")
+	}
+
+	static prevTab() {
+		Send("^+{Tab}")
+	}
+
+	static bitwardenFill() {
+		Send("^+l")
+	}
+}
