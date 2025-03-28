@@ -8,16 +8,11 @@ global tmuxWaitingForConfirm := false
 
 ;;;;;;;;;;;;;;;;;;;;;;;; GROUPS ;;;;;;;;;;;;;;;;;;;;;;;;
 
-GroupAdd("browsers", "ahk_exe firefox.exe")
-GroupAdd("browsers", "ahk_exe chrome.exe")
-GroupAdd("browsers", "ahk_exe msedge.exe")
-GroupAdd("browsers", "ahk_exe AnyDesk.exe")
-
 ; Include default keybinds
 #include "%A_ScriptDir%\default_keybinds.ahk"
 #include "%A_ScriptDir%\browser_keybinds.ahk" ; Include browser keybinds
 
-;;;;;;;;;;;;;;;;;;;;;;;; PROGRAM KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;; PROGRAM FILES ;;;;;;;;;;;;;;;;;;;;;;;;
 
 #include "%A_ScriptDir%\programs\spotify.ahk" ; Include Spotify keybinds
 #include "%A_ScriptDir%\programs\notepad++.ahk" ; Include Notepad++ keybinds
@@ -29,7 +24,7 @@ GroupAdd("browsers", "ahk_exe AnyDesk.exe")
 #include "%A_ScriptDir%\programs\altserver.ahk" ; Include AltServer keybinds
 #include "%A_ScriptDir%\programs\electron.ahk" ; Include Electron keybinds
 
-;;;;;;;;;;;;;;;;;;;;;;;; GAME KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;; GAME FILES ;;;;;;;;;;;;;;;;;;;;;;;;
 
 #include "%A_ScriptDir%\games\arma3.ahk" ; Include Arma 3 keybinds
 #include "%A_ScriptDir%\games\payday2.ahk" ; Include Payday 2 keybinds
@@ -42,7 +37,7 @@ GroupAdd("browsers", "ahk_exe AnyDesk.exe")
 #include "%A_ScriptDir%\games\tarkov.ahk" ; Include Escape from Tarkov keybinds
 #include "%A_ScriptDir%\games\cms2021.ahk" ; Include Car Mechanic Simulator 2021 keybinds
 
-;;;;;;;;;;;;;;;;;;;;;;;; OTHER ;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;; FUNCTIONS ;;;;;;;;;;;;;;;;;;;;;;;;
 
 nextTab() {
 	Send("^{Tab}")

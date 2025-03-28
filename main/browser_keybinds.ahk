@@ -1,3 +1,7 @@
+GroupAdd("browsers", "ahk_exe firefox.exe")
+GroupAdd("browsers", "ahk_exe chrome.exe")
+GroupAdd("browsers", "ahk_exe msedge.exe")
+GroupAdd("browsers", "ahk_exe AnyDesk.exe")
 
 ;;;;;;;;;;;;;;;;;;;;;;;; BROWSER KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
 
