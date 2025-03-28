@@ -19,65 +19,15 @@ GroupAdd("browsers", "ahk_exe AnyDesk.exe")
 
 ;;;;;;;;;;;;;;;;;;;;;;;; PROGRAM KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
 
-#include "%A_ScriptDir%\programs\spotify.ahk"
-#include "%A_ScriptDir%\programs\notepad++.ahk"
-#include "%A_ScriptDir%\programs\mpc-hc.ahk"
-#include "%A_ScriptDir%\programs\mintty.ahk"
+#include "%A_ScriptDir%\programs\spotify.ahk" ; Include Spotify keybinds
+#include "%A_ScriptDir%\programs\notepad++.ahk" ; Include Notepad++ keybinds
+#include "%A_ScriptDir%\programs\mpc-hc.ahk" ; Include MPC-HC keybinds
+#include "%A_ScriptDir%\programs\mintty.ahk" ; Include Mintty keybinds
 #include "%A_ScriptDir%\programs\explorer.ahk" ; Include explorer keybinds
 #include "%A_ScriptDir%\programs\vscode.ahk" ; Include VSCode keybinds
-
-; Keybinds for when electron is active
-#HotIf WinActive("ahk_exe electron.exe")
-F14:: Send("^{Insert}")
-F15:: Send("{Right}")
-F16:: activateIfOpen("firefox.exe")
-F18:: Send("{Left}")
-PrintScreen & F14:: Send("+{Insert}")
-#HotIf
-
-; Keybinds for when Photos is active
-#HotIf WinActive("ahk_exe ApplicationFrameHost.exe") and winHasTitle("Photos")
-F16 & WheelUp:: Send("^{=}")
-F16 & WheelDown:: Send("^{-}")
-PrintScreen & F19:: Send("^w")
-F22:: Send("^0")
-#HotIf
-
-; Keybinds for when Vidupe is active
-#HotIf WinActive("ahk_exe Vidupe.exe")
-F13:: {
-	Send("{Left}")
-	Sleep(125)
-	Send("{Left}")
-	Sleep(150)
-	Send("{Enter}")
-	Sleep(125)
-    Send("{Right}")
-    Sleep(125)
-    Send("{Right}")
-	Sleep(150)
-    Send("{Enter}")
-}
-F15:: {
-	Send("{Right}")
-	Sleep(125)
-	Send("{Right}")
-	Sleep(150)
-	Send("{Enter}")
-	Sleep(125)
-    Send("{Left}")
-    Sleep(125)
-    Send("{Left}")
-	Sleep(150)
-    Send("{Enter}")
-}
-#HotIf
-
-; Keybinds for altserver
-#HotIf WinActive("ahk_exe AltServer.exe")
-F13:: Send("nickchase5146@gmail.com")
-F16:: Send("6h{#}hJRlX0gGMXv")
-#HotIf
+#include "%A_ScriptDir%\programs\photos.ahk" ; Include Photos keybinds
+#include "%A_ScriptDir%\programs\altserver.ahk" ; Include AltServer keybinds
+#include "%A_ScriptDir%\programs\electron.ahk" ; Include Electron keybinds
 
 ;;;;;;;;;;;;;;;;;;;;;;;; GAME KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -254,16 +204,6 @@ shiftLeft(shift := false) {
     else
         Send("{Left}")
 }
-
-; #HotIf WinActive("ahk_exe chrome.exe") - MOVED TO browser_keybinds.ahk
-; copyURL() { - MOVED TO browser_keybinds.ahk
-; 	Send("^l") - MOVED TO browser_keybinds.ahk
-; 	Sleep(150) - MOVED TO browser_keybinds.ahk
-; 	Send("^c") - MOVED TO browser_keybinds.ahk
-; 	Sleep(50) - MOVED TO browser_keybinds.ahk
-; 	Send("!{Tab}") - MOVED TO browser_keybinds.ahk
-; } - MOVED TO browser_keybinds.ahk
-; #HotIf - MOVED TO browser_keybinds.ahk
 
 copy() {
 	Send("^c")
