@@ -57,64 +57,9 @@ F24:: Send("b")
 F13:: Send("b")
 #HotIf
 
-; #HotIf WinActive("ahk_class Arma 3")
-; F13:: Send("{NumpadAdd}")
-; F14:: Send("{LAlt}")
-; F16:: Send("{NumpadSub}")
-; F19:: Send("{NumpadEnter}")
-; F21:: Send("i")
-; F22:: Send("{Esc}")
-; F24:: Send("m")
-; #HotIf
-
-; #HotIf WinActive("ahk_exe payday2_win32_release.exe")
-; F22:: Send("{Esc}")
-; #HotIf
-
-; #HotIf WinActive("ahk_exe ReadyOrNot-Win64-Shipping.exe")
-; F19:: Send("p")
-; #HotIf
-
-; ; Keybinds for when 7DTD is active
-; #HotIf WinActive("ahk_exe 7DaysToDie.exe")
-; Toggle := false
-; ToggleLMB := false
-
-; PrintScreen & F15:: holdShiftW(Toggle)
-; PrintScreen & F18:: holdLMB(ToggleLMB)
-; F21:: Send("{Tab}")
-; F24:: Send("m")
-; #HotIf
-
-; ; Keybinds for when Warframe is active
-; #HotIf WinActive("ahk_exe Warframe.x64.exe")
-; F13:: Send("1")
-; F14:: Send("2")
-; F15:: Send("3")
-; F16:: Send("4")
-; F24:: Send("m")
-; NumpadMult & F24:: Send("gggggG{^}6")
-; #HotIf
-
 #HotIf WinActive("ahk_exe CivilizationVI_DX12.exe")
 F15:: Send(".")
 F18:: Send(",")
-#HotIf
-
-#HotIf WinActive("ahk_exe Factorio.exe")
-F13:: Send("r")
-F16:: Send("+r")
-F18:: Send("q")
-F21:: Send("e")
-F24:: Send("m")
-PrintScreen & F24:: Send("b")
-#HotIf
-
-#HotIf WinActive("ahk_exe GRB.exe")
-F13:: Send("1")
-F14:: Send("2")
-F15:: Send("3")
-F22:: Send("{Esc}")
 #HotIf
 
 ;;;;;;;;;;;;;;;;;;;;;;;; OTHER ;;;;;;;;;;;;;;;;;;;;;;;;
