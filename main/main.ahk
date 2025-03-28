@@ -15,6 +15,7 @@ GroupAdd("browsers", "ahk_exe AnyDesk.exe")
 
 ; Include default keybinds
 #include "%A_ScriptDir%\default_keybinds.ahk"
+#include "%A_ScriptDir%\browser_keybinds.ahk" ; Include browser keybinds
 
 ;;;;;;;;;;;;;;;;;;;;;;;; PROGRAM KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -33,78 +34,7 @@ PrintScreen & F18:: Send("{F2}")
 PrintScreen & F20:: Send("^r")
 #HotIf
 
-; Keybinds for when Browsers are active
-#HotIf WinActive("ahk_group browsers")
-F13:: {
-	if (stashOpen())
-		stashNext()
-	else
-		copyURL()
-}
-NumpadMult & F13:: {
-	if (stashOpen())
-		paste()
-}
-F14:: {
-	if (stashOpen())
-		shiftRight(true)
-	else
-		copy()
-}
-NumpadMult & F14:: {
-	if (stashOpen())
-		copy()
-}
-PrintScreen & F14:: {
-	if (stashOpen())
-		shiftRight(false)
-	else
-		paste()
-}
-F15:: nextTab()
-NumpadMult & F15:: {
-	if (stashOpen())
-		sendStashTag("MMF")
-}
-F16:: {
-	if (stashOpen())
-		stashPrev()
-	else
-		CopySwitchPaste()
-}
-F17:: {
-	if (stashOpen())
-		shiftLeft(true)
-	else
-		enter()
-}
-PrintScreen & F17:: {
-	if (stashOpen())
-		shiftLeft(false)
-	else
-		backspace()
-}
-NumpadMult & F17:: {
-	if (stashOpen())
-		backspace()
-}
-F18:: prevTab()
-PrintScreen & F18:: {
-	if (stashOpen())
-		sendStashTag("SHARED")
-	else
-		bitwardenFill()
-}
-NumpadMult & F18:: bitwardenFill()
-NumpadMult & F19:: {
-	if (!stashOpen())
-		CopySwitchPasteMod()
-}
-PrintScreen & F20:: Send("^r")
-F21:: Send("^t")
-PrintScreen & F21:: duplicateTab()
-NumpadMult & F24:: Send("^+t")
-#HotIf
+; Keybinds for when Browsers are active - MOVED TO browser_keybinds.ahk
 
 ; Keybinds for when Spotify is active
 #HotIf WinActive("ahk_exe Spotify.exe")
@@ -410,15 +340,15 @@ shiftLeft(shift := false) {
         Send("{Left}")
 }
 
-#HotIf WinActive("ahk_exe chrome.exe")
-copyURL() {
-	Send("^l")
-	Sleep(150)
-	Send("^c")
-	Sleep(50)
-	Send("!{Tab}")
-}
-#HotIf
+; #HotIf WinActive("ahk_exe chrome.exe") - MOVED TO browser_keybinds.ahk
+; copyURL() { - MOVED TO browser_keybinds.ahk
+; 	Send("^l") - MOVED TO browser_keybinds.ahk
+; 	Sleep(150) - MOVED TO browser_keybinds.ahk
+; 	Send("^c") - MOVED TO browser_keybinds.ahk
+; 	Sleep(50) - MOVED TO browser_keybinds.ahk
+; 	Send("!{Tab}") - MOVED TO browser_keybinds.ahk
+; } - MOVED TO browser_keybinds.ahk
+; #HotIf - MOVED TO browser_keybinds.ahk
 
 copy() {
 	Send("^c")
