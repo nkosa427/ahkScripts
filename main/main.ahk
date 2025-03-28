@@ -31,6 +31,15 @@ GroupAdd("browsers", "ahk_exe AnyDesk.exe")
 
 ;;;;;;;;;;;;;;;;;;;;;;;; GAME KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
 
+#include "%A_ScriptDir%\games\arma3.ahk" ; Include Arma 3 keybinds
+#include "%A_ScriptDir%\games\payday2.ahk" ; Include Payday 2 keybinds
+#include "%A_ScriptDir%\games\readyornot.ahk" ; Include Ready or Not keybinds
+#include "%A_ScriptDir%\games\7dtd.ahk" ; Include 7 Days to Die keybinds
+#include "%A_ScriptDir%\games\warframe.ahk" ; Include Warframe keybinds
+#include "%A_ScriptDir%\games\civ6.ahk" ; Include Civilization VI keybinds
+#include "%A_ScriptDir%\games\factorio.ahk" ; Include Factorio keybinds
+#include "%A_ScriptDir%\games\grb.ahk" ; Include GRB keybinds
+
 #HotIf WinActive("ahk_exe EscapeFromTarkov.exe")
 NumpadMult & F13:: Send("y")
 F21:: Send("{Tab}")
@@ -48,44 +57,44 @@ F24:: Send("b")
 F13:: Send("b")
 #HotIf
 
-#HotIf WinActive("ahk_class Arma 3")
-F13:: Send("{NumpadAdd}")
-F14:: Send("{LAlt}")
-F16:: Send("{NumpadSub}")
-F19:: Send("{NumpadEnter}")
-F21:: Send("i")
-F22:: Send("{Esc}")
-F24:: Send("m")
-#HotIf
+; #HotIf WinActive("ahk_class Arma 3")
+; F13:: Send("{NumpadAdd}")
+; F14:: Send("{LAlt}")
+; F16:: Send("{NumpadSub}")
+; F19:: Send("{NumpadEnter}")
+; F21:: Send("i")
+; F22:: Send("{Esc}")
+; F24:: Send("m")
+; #HotIf
 
-#HotIf WinActive("ahk_exe payday2_win32_release.exe")
-F22:: Send("{Esc}")
-#HotIf
+; #HotIf WinActive("ahk_exe payday2_win32_release.exe")
+; F22:: Send("{Esc}")
+; #HotIf
 
-#HotIf WinActive("ahk_exe ReadyOrNot-Win64-Shipping.exe")
-F19:: Send("p")
-#HotIf
+; #HotIf WinActive("ahk_exe ReadyOrNot-Win64-Shipping.exe")
+; F19:: Send("p")
+; #HotIf
 
-; Keybinds for when 7DTD is active
-#HotIf WinActive("ahk_exe 7DaysToDie.exe")
-Toggle := false
-ToggleLMB := false
+; ; Keybinds for when 7DTD is active
+; #HotIf WinActive("ahk_exe 7DaysToDie.exe")
+; Toggle := false
+; ToggleLMB := false
 
-PrintScreen & F15:: holdShiftW(Toggle)
-PrintScreen & F18:: holdLMB(ToggleLMB)
-F21:: Send("{Tab}")
-F24:: Send("m")
-#HotIf
+; PrintScreen & F15:: holdShiftW(Toggle)
+; PrintScreen & F18:: holdLMB(ToggleLMB)
+; F21:: Send("{Tab}")
+; F24:: Send("m")
+; #HotIf
 
-; Keybinds for when Warframe is active
-#HotIf WinActive("ahk_exe Warframe.x64.exe")
-F13:: Send("1")
-F14:: Send("2")
-F15:: Send("3")
-F16:: Send("4")
-F24:: Send("m")
-NumpadMult & F24:: Send("gggggG{^}6")
-#HotIf
+; ; Keybinds for when Warframe is active
+; #HotIf WinActive("ahk_exe Warframe.x64.exe")
+; F13:: Send("1")
+; F14:: Send("2")
+; F15:: Send("3")
+; F16:: Send("4")
+; F24:: Send("m")
+; NumpadMult & F24:: Send("gggggG{^}6")
+; #HotIf
 
 #HotIf WinActive("ahk_exe CivilizationVI_DX12.exe")
 F15:: Send(".")
