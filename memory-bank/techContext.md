@@ -1,16 +1,18 @@
 # Tech Context
 
 ## Technologies Used
-- [ ] To be determined.
+- [x] Markdown, AHK.
 
 ## Development Setup
-- [ ] To be determined.
+- [x] VSCode.
 
 ## Technical Constraints
-- [ ] To be determined.
+- [ ] None.
 
 ## Dependencies
-- [ ] To be determined.
+- [x] The available tools.
+- [x] AutoHotkey v2.0
 
 ## Tool Usage Patterns
-- [ ] To be determined.
+- [x] Use the read_file tool to read the memory bank files and the replace_in_file tool to update them.
+- [x] AHK is used to script keybinds and automate tasks.

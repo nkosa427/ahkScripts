@@ -64,8 +64,9 @@ F18:: BrowserFunctions.prevTab()
 PrintScreen & F18:: {
 	if (stashOpen())
 		sendStashTag("SHARED")
+	else
+		BrowserFunctions.bitwardenFill()
 }
-NumpadMult & F18:: BrowserFunctions.bitwardenFill()
 NumpadMult & F19:: {
 	if (!stashOpen())
 		CopySwitchPasteMod()

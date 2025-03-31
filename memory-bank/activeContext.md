@@ -1,19 +1,19 @@
 # Active Context
 
 ## Current Work Focus
-- [ ] To be determined.
+- [x] Update the memory bank files with information about the 'main/' directory.
 
 ## Recent Changes
-- [ ] To be determined.
+- [x] Updated the systemPatterns.md and techContext.md files with information about the 'main/' directory.
 
 ## Next Steps
-- [ ] To be determined.
+- [x] Update the progress.md file.
 
 ## Active Decisions and Considerations
-- [ ] To be determined.
+- [ ] None at this time.
 
 ## Important Patterns and Preferences
-- [ ] To be determined.
+- [x] Read a file, then update it.
 
 ## Learnings and Project Insights
-- [ ] To be determined.
+- [x] The 'main/' directory contains the core AHK scripts for keybinds and automation.

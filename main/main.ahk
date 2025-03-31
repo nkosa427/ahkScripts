@@ -156,11 +156,11 @@ CopySwitchPaste() {
 		Send("^c")
 		Sleep(50)  ; Wait for the copying operation to complete
 
-		; Attempt to activate the window associated with the "electron.exe" process
-		if WinExist("ahk_exe electron.exe") {
-			; Activate the window associated with "electron.exe"
-			WinActivate("ahk_exe electron.exe")
-			WinWaitActive("ahk_exe electron.exe")  ; Wait for it to become active
+		; Attempt to activate the "Folder Tree Viewer" window
+		if WinExist("Folder Tree Viewer") {
+			; Activate the "Folder Tree Viewer" window
+			WinActivate("Folder Tree Viewer")
+			WinWaitActive("Folder Tree Viewer")  ; Wait for it to become active
 			Sleep(50)
 
 			; Send Ctrl+V to paste
@@ -169,8 +169,8 @@ CopySwitchPaste() {
 			Send("{Enter}")
 			Sleep(50)
 		} else {
-			; If the window associated with "electron.exe" not found, show a message
-			MsgBox("The window associated with 'electron.exe' is not open.")
+			; If the "Folder Tree Viewer" window not found, show a message
+			MsgBox("The 'Folder Tree Viewer' window is not open.")
 		}
 
 		; Switch back to the previously active window
@@ -192,11 +192,11 @@ CopySwitchPasteMod() {
 		Send("^+v")
 		Sleep(50)  ; Wait for the copying operation to complete
 
-		; Attempt to activate the window associated with the "electron.exe" process
-		if WinExist("ahk_exe electron.exe") {
-			; Activate the window associated with "electron.exe"
-			WinActivate("ahk_exe electron.exe")
-			WinWaitActive("ahk_exe electron.exe")  ; Wait for it to become active
+		; Attempt to activate the "Folder Tree Viewer" window
+		if WinExist("Folder Tree Viewer") {
+			; Activate the "Folder Tree Viewer" window
+			WinActivate("Folder Tree Viewer")
+			WinWaitActive("Folder Tree Viewer")  ; Wait for it to become active
 			Sleep(50)
 
 			; Send Ctrl+V to paste
@@ -205,8 +205,8 @@ CopySwitchPasteMod() {
 			Send("{Enter}")
 			Sleep(50)
 		} else {
-			; If the window associated with "electron.exe" not found, show a message
-			MsgBox("The window associated with 'electron.exe' is not open.")
+			; If the "Folder Tree Viewer" window not found, show a message
+			MsgBox("The 'Folder Tree Viewer' window is not open.")
 		}
 
 		; Switch back to the previously active window

@@ -1,16 +1,17 @@
 # Progress
 
 ## What Works
-- [ ] To be determined.
+- [x] Creation of the memory bank files and the ability to read and update them.
+- [x] Updated the systemPatterns.md and techContext.md files with information about the 'main/' directory.
 
 ## What's Left to Build
-- [ ] To be determined.
+- [ ] Nothing.
 
 ## Current Status
-- [ ] To be determined.
+- [x] The memory bank is updated with information about the 'main/' directory.
 
 ## Known Issues
-- [ ] To be determined.
+- [ ] None.
 
 ## Evolution of Project Decisions
-- [ ] To be determined.
+- [x] Use markdown files for persistent storage and to read and update them at the start of each session.
