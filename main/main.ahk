@@ -31,6 +31,9 @@ SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 #include "%A_ScriptDir%\games\grb.ahk" ; Include GRB keybinds
 #include "%A_ScriptDir%\games\tarkov.ahk" ; Include Escape from Tarkov keybinds
 #include "%A_ScriptDir%\games\cms2021.ahk" ; Include Car Mechanic Simulator 2021 keybinds
+#include "%A_ScriptDir%\games\satisfactory.ahk" ; Include Satisfactory keybinds
+
+#include "%A_ScriptDir%\functions\game_functions.ahk" ; Include game-specific functions
 
 ;;;;;;;;;;;;;;;;;;;;;;;; FUNCTIONS ;;;;;;;;;;;;;;;;;;;;;;;;
 
