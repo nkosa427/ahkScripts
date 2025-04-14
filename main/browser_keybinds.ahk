@@ -8,10 +8,8 @@ GroupAdd("browsers", "ahk_exe AnyDesk.exe")
 ; Keybinds for when Browsers are active
 #HotIf WinActive("ahk_group browsers")
 F13:: {
-	if (stashOpen())
-		stashNext()
-	; else
-	; 	copyURL()
+	if (stashNext())
+		return
 }
 NumpadMult & F13:: {
 	if (stashOpen())

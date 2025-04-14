@@ -36,13 +36,9 @@ SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 ;;;;;;;;;;;;;;;;;;;;;;;; FUNCTIONS ;;;;;;;;;;;;;;;;;;;;;;;;
 #include "%A_ScriptDir%\functions\windows_functions.ahk" ; Include Windows-specific functions
 #include "%A_ScriptDir%\functions\game_functions.ahk" ; Include game-specific functions
+#include "%A_ScriptDir%\functions\stash_functions.ahk" ; Include Stash-specific functions
 
 ;;;;;;;;;;;;;;;;;;;;;;;; FUNCTIONS ;;;;;;;;;;;;;;;;;;;;;;;;
-
-stashOpen() {
-	; Check if the title contains "Stash - Chromium"
-    return winHasTitle("Stash - Chromium")
-}
 
 winHasTitle(name) {
 	; Get the title of the active window
@@ -50,40 +46,6 @@ winHasTitle(name) {
 
     ; Check if the title contains name
     return InStr(title, name) > 0
-}
-
-sendStashTag(text) {
-	Send("!q")
-	Sleep(1)
-	Send(text)
-	Sleep(1)
-	Send("{Enter}")
-}
-
-stashNext() {
-	Send("p")
-	Sleep(5)
-	Send("n")
-}
-
-stashPrev() {
-	Send("p")
-	Sleep(5)
-	Send("p")
-}
-
-shiftRight(shift := false) {
-    if (shift)
-        Send("+{Right}")
-    else
-        Send("{Right}")
-}
-
-shiftLeft(shift := false) {
-    if (shift)
-        Send("+{Left}")
-    else
-        Send("{Left}")
 }
 
 copy() {
