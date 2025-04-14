@@ -33,6 +33,8 @@ SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 #include "%A_ScriptDir%\games\cms2021.ahk" ; Include Car Mechanic Simulator 2021 keybinds
 #include "%A_ScriptDir%\games\satisfactory.ahk" ; Include Satisfactory keybinds
 
+;;;;;;;;;;;;;;;;;;;;;;;; FUNCTIONS ;;;;;;;;;;;;;;;;;;;;;;;;
+#include "%A_ScriptDir%\functions\windows_functions.ahk" ; Include Windows-specific functions
 #include "%A_ScriptDir%\functions\game_functions.ahk" ; Include game-specific functions
 
 ;;;;;;;;;;;;;;;;;;;;;;;; FUNCTIONS ;;;;;;;;;;;;;;;;;;;;;;;;

@@ -1,16 +1,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;; DEFAULT KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
 
 	;------------------------------------------ No command for F13
-	F13::
-	{
-	   ToolTip("No command for F13", 10, 10)
-	}
+	; F13::
 
 	;------------------------------------------ Switch to next desktop (Ctrl+Win+Right)
-	PrintScreen & F13:: {
-		; ToolTip("Sending Desktop Right", 10, 10)
-		Send("^#{Right}")
-	}
+	; PrintScreen & F13:: {
+	; 	desktopRight()
+	; }
 	;------------------------------------------ Copy (Depends on window)
 	F14:: copy()
 
@@ -27,7 +23,7 @@
 	}
 
 	;------------------------------------------ Switch to previous desktop (Ctrl+Win+Left)
-	PrintScreen & F16:: Send("^#{Left}")
+	; PrintScreen & F16:: desktopLeft()
 
 	;------------------------------------------ Go the first desktop (Ctrl+Win+Left several times)
 	NumpadMult & F16:: goToFirstDesktop()
@@ -47,11 +43,13 @@
 	;    return
 	;}
 
-	;------------------------------------------ Volume Up (F19 + Scroll Up)
-	F19 & WheelUp:: Send("{Volume_Up}")
+	F19 & WheelUp:: {
+		desktopRight()
+	}
 
-	;------------------------------------------ Volume Down (F19 + Scroll Down)
-	F19 & WheelDown:: Send("{Volume_Down}")
+	F19 & WheelDown:: {
+		desktopLeft()
+	}
 
 	;------------------------------------------ Select All (Ctrl+A)
 	F19 & MButton:: Send("^a")
@@ -59,8 +57,15 @@
 	;------------------------------------------ Select All (Ctrl+A)
 	PrintScreen & F19:: Send("^a")
 
-	;------------------------------------------ Brightness Up (Alt+PgUp)
-	F20:: Send("!{PgUp}")
+	;------------------------------------------ No command for F20
+	; F20::
+
+	;------------------------------------------ Volume Up (F20 + Scroll Up)
+	F20 & WheelUp:: Send("{Volume_Up}")
+
+	;------------------------------------------ Volume Down (F20 + Scroll Down)
+	F20 & WheelDown:: Send("{Volume_Down}")
+
 
 	;------------------------------------------ Delete (del)
 	NumpadMult & F20:: Send("{Del}")
@@ -77,11 +82,14 @@
 	;------------------------------------------ Task View (Win+Tab)
 	PrintScreen & F22:: Send("#{Tab}")
 
-	;------------------------------------------ Brightness Down (Alt+PgDn)
-	F23:: Send("!{PgDn}")
+	;------------------------------------------ No command for F23
+	; F23:: 
+	
+	;------------------------------------------ Brightness Up (Alt+PgUp)
+	F23 & WheelUp:: Send("!{PgUp}")
 
-	;------------------------------------------ Volume Mute (F23)
-	PrintScreen & F23:: SoundSetMute(-1)
+	;------------------------------------------ Brightness Down (Alt+PgDn)
+	F23 & WheelDown:: Send("!{PgDn}")
 
 	;------------------------------------------ No command for F24
 	;F24::
@@ -93,12 +101,12 @@
 	F24:: Send("^x")
 
 	;------------------------------------------ Close (Depends on window)
-	PrintScreen & F24:: {
-	}
+	; PrintScreen & F24:: {
+	; }
 
-	NumpadMult:: {
-	}
-	PrintScreen:: {
-	}
-	PrintScreen & NumpadMult:: {
-	}
+	; NumpadMult:: {
+	; }
+	; PrintScreen:: {
+	; }
+	; PrintScreen & NumpadMult:: {
+	; }
