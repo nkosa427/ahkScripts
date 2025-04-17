@@ -38,7 +38,7 @@ GroupAdd, browsers, ahk_exe AnyDesk.exe
 	PrintScreen & F16::Send, ^#{Left}
 
 	;------------------------------------------ Go the first desktop (Ctrl+Win+Left several times)
-	Pause & F16::goToFirstDesktop()
+	ScrollLock & F16::goToFirstDesktop()
 
 	;------------------------------------------ Enter (Enter)
 	F17::enter()
@@ -68,7 +68,7 @@ GroupAdd, browsers, ahk_exe AnyDesk.exe
 	F20::Send, !{PgUp}
 
 	;------------------------------------------ Delete (del)
-	Pause & F20::Send, {Del}
+	ScrollLock & F20::Send, {Del}
 
 	;------------------------------------------ No command for F21
 	;F21::return
@@ -94,9 +94,9 @@ GroupAdd, browsers, ahk_exe AnyDesk.exe
 	;------------------------------------------ Close (Depends on window)
 	PrintScreen & F24::close()
 
-	Pause::return
+	ScrollLock::return
 	PrintScreen::return
-	PrintScreen & Pause::return
+	PrintScreen & ScrollLock::return
 
 ;;;;;;;;;;;;;;;;;;;;;;;; PROGRAM KEYBINDS ;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -119,20 +119,20 @@ GroupAdd, browsers, ahk_exe AnyDesk.exe
 	F13::
 		stashOpen() ? stashNext() : copyURL()
 		return
-	Pause & F13::
+	ScrollLock & F13::
 		stashOpen() ? paste() : ""
 		return
 	F14::
 		stashOpen() ? shiftRight(true) : copy()
 		return
-	Pause & F14::
+	ScrollLock & F14::
 		stashOpen() ? copy() : ""
 		return
 	PrintScreen & F14::
 		stashOpen() ? shiftRight(false) : paste()
 		return
 	F15::nextTab()
-	Pause & F15::
+	ScrollLock & F15::
 		stashOpen() ? sendStashTag("MMF") : ""
 		return
 	F16::
@@ -144,25 +144,25 @@ GroupAdd, browsers, ahk_exe AnyDesk.exe
 	PrintScreen & F17::
 		stashOpen() ? shiftLeft(false) : backspace()
 		return
-	Pause & F17::
+	ScrollLock & F17::
 		stashOpen() ? backspace() : ""
 		return
 	F18::prevTab()
 	PrintScreen & F18::
 		stashOpen() ? sendStashTag("SHARED") : bitwardenFill()
 		return
-	Pause & F18::bitwardenFill()
+	ScrollLock & F18::bitwardenFill()
 	;F19::
 		;stashOpen() ? stashPrev() : CopySwitchPasteMod()
 		;return
-	Pause & F19::
+	ScrollLock & F19::
 		stashOpen() ? "" : CopySwitchPasteMod()
 		return
 	PrintScreen & F20::Send, ^r
 	F21::Send, ^t
 	PrintScreen & F21::duplicateTab()
 	; PrintScreen & F24::close()
-	Pause & F24::Send, ^+t
+	ScrollLock & F24::Send, ^+t
 }
 
 ; Keybinds for when Spotify is active
@@ -282,7 +282,7 @@ GroupAdd, browsers, ahk_exe AnyDesk.exe
 
 #IfWinActive ahk_exe EscapeFromTarkov.exe
 {
-	Pause & F13::Send, y
+	ScrollLock & F13::Send, y
 	F21::Send, {Tab}
 	PrintScreen & F23::Send, {F11}
 	F24::
@@ -345,7 +345,7 @@ GroupAdd, browsers, ahk_exe AnyDesk.exe
 	F15::Send, 3
 	F16::Send, 4
 	F24::Send, m
-	Pause & F24::Send, gggggG{^}6
+	ScrollLock & F24::Send, gggggG{^}6
 }
 
 #IfWinActive ahk_exe CivilizationVI_DX12.exe

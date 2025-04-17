@@ -57,7 +57,7 @@ RunAutoSequence() {
     PressKey("{Esc}", 1, 3000)
     
     ; Verify the screen state after pressing Esc
-    if !VerifyScreenMatch(324, 182, 100, 25, A_WorkingDir "\pause_campaign 324x182 w100 h25.png") {
+    if !VerifyScreenMatch(324, 182, 100, 25, A_WorkingDir "\ScrollLock_campaign 324x182 w100 h25.png") {
         ShowMessage("Screen verification failed - sequence aborted", 3000)
         return
     }
@@ -190,7 +190,7 @@ F2::
         y := 182
         width := 100
         height := 25
-        referencePath := A_WorkingDir . "\pause_campaign_324x182_w100_h25.png"
+        referencePath := A_WorkingDir . "\ScrollLock_campaign_324x182_w100_h25.png"
 
         ; Verify the screen match
         if VerifyScreenMatch(x, y, width, height, referencePath) {
