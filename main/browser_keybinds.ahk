@@ -7,85 +7,51 @@ GroupAdd("browsers", "ahk_exe AnyDesk.exe")
 
 ; Keybinds for when Browsers are active
 #HotIf WinActive("ahk_group browsers")
-F13:: {
-	if (stashOpen())
-		return
-}
-
 F13 & WheelUp:: {
-	if (shiftRight(false))
+	if (stashNext())
 		return
 }
 
 F13 & WheelDown:: {
-	if (shiftLeft(false))
+	if (stashPrev())
 		return
 }
 
-NumpadMult & F13:: {
+ScrollLock & F13:: {
 	if (stashOpen())
 		paste()
 }
 
-; F15:: BrowserFunctions.nextTab()
-F14 & WheelUp:: {
-	BrowserFunctions.nextTab()
-}
-
-F14 & WheelDown:: {
-	BrowserFunctions.prevTab()
-}
-
-F14 & PrintScreen:: Send("^t")
-
-F14 & NumpadMult:: Send("^w")
-
-F14 & WheelLeft:: Send("^+t")
-
-NumpadMult & F15:: {
-	if (sendStashTag("MMF"))
-		return
-}
-
-F15:: {
+F14:: {
 	if (stashOpen())
 		return
 	else
 		copy()
 }
 
-PrintScreen & F15:: {
+ScrollLock & F14:: {
 	if (stashOpen())
-		return
+		copy()
+}
+
+PrintScreen & F14:: {
+	if (stashOpen())
+		shiftRight(false)
 	else
 		paste()
 }
 
-F15 & WheelUp:: {
-	if (stashNext())
-		return
-}
-
-F15 & WheelDown:: {
-	if (stashPrev())
-		return
+ScrollLock & F15:: {
+	if (stashOpen())
+		sendStashTag("MMF")
 }
 
 F16:: {
 	if (stashOpen())
+		; stashPrev()
 		return
 	else
 		CopySwitchPaste()
-}
-
-F16 & WheelUp:: {
-	if (shiftRight(true))
-		return
-}
-
-F16 & WheelDown:: {
-	if (shiftLeft(true))
-		return
 }
 
 F17:: {
@@ -102,12 +68,14 @@ PrintScreen & F17:: {
 		backspace()
 }
 
-NumpadMult & F17:: {
+ScrollLock & F17:: {
 	if (stashOpen())
 		backspace()
 }
 
-; F18:: BrowserFunctions.prevTab()
+F18 & WheelUp:: BrowserFunctions.nextTab()
+
+F18 & WheelDown:: BrowserFunctions.prevTab()
 
 PrintScreen & F18:: {
 	if (sendStashTag("SHARED"))
@@ -116,25 +84,19 @@ PrintScreen & F18:: {
 		BrowserFunctions.bitwardenFill()
 }
 
-; F19:: {
-
-; }
-
-NumpadMult & F19:: {
+ScrollLock & F19:: {
 	if (!stashOpen())
 		CopySwitchPasteMod()
 }
 
 PrintScreen & F20:: Send("^r")
 
-; F21:: Send("^t")
+F21:: Send("^t")
+PrintScreen & F21:: Send("^w")
 
-PrintScreen & F21:: duplicateTab()
+PrintScreen & F24:: duplicateTab()
 
-; PrintScreen & F24:: Send("^w")
-
-; NumpadMult & F24:: Send("^+t")
-
+ScrollLock & F24:: Send("^+t")
 #HotIf
 
 class BrowserFunctions {

@@ -9,6 +9,6 @@ F17:: Send("{Left}")
 PrintScreen & F17:: Send("^!{Left}")
 F18:: Send("^+a")
 F21:: Send("{Space}")
-PrintScreen & F21:: Send("^c")
-PrintScreen & F24::Send("!x")
+; PrintScreen & F21:: Send("^c")
+PrintScreen & F21::Send("!x")
 #HotIf
