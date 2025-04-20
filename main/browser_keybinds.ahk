@@ -23,7 +23,7 @@ ScrollLock & F13:: {
 }
 
 F14:: {
-	if (stashOpen())
+	if (shiftRight(true))
 		return
 	else
 		copy()
