@@ -83,4 +83,9 @@ F24::
     PressKeyWithDelay("m", 50)
 }
 
+PrintScreen & F24::
+{
+    PressKeyWithDelay("0", 50)
+}
+
 #HotIf ; End of game-specific hotkeys
