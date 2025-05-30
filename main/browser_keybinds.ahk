@@ -85,8 +85,14 @@ PrintScreen & F18:: {
 }
 
 ScrollLock & F19:: {
-	if (!stashOpen())
-		CopySwitchPasteMod()
+	if (stashOpen()) {
+		sendStashTag("AAUnwanted")
+		Sleep(25)
+		Send("p")
+		Sleep(90)
+		Send("n")
+	}
+	return
 }
 
 PrintScreen & F20:: Send("^r")
