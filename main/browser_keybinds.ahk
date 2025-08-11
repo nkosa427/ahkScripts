@@ -41,6 +41,26 @@ PrintScreen & F14:: {
 		paste()
 }
 
+F15:: {
+	if (stashOpen()) {
+		Send('{n down}') ; Send the key-down event for 'n'
+		KeyWait("F15")     ; Wait until the F15 key is physically released
+		Send('{n up}')   ; Send the key-up event for 'n'
+	}
+	else
+		return
+}
+
+PrintScreen & F15:: {
+	if (stashOpen()) {
+		Send('{c down}') ; Send the key-down event for 'c'
+		KeyWait("F15")     ; Wait until the F15 key is physically released
+		Send('{c up}')   ; Send the key-up event for 'c'
+	}
+	else
+		return
+}
+
 ScrollLock & F15:: {
 	if (stashOpen())
 		sendStashTag("MMF")
