@@ -7,15 +7,39 @@ GroupAdd("browsers", "ahk_exe AnyDesk.exe")
 
 ; Keybinds for when Browsers are active
 #HotIf WinActive("ahk_group browsers")
-F13 & WheelUp:: {
-	if (stashNext())
+F13:: {
+	if (stashOpen()) {
+		Send("{c down}") ; Send the key-down event for 'c'
+		KeyWait("F13")     ; Wait until the F13 key is physically released
+		Send("{c up}")   ; Send the key-up event for 'c'
+	}	
+	else
 		return
 }
 
-F13 & WheelDown:: {
-	if (stashPrev())
+PrintScreen & F13:: {
+	if (stashOpen()) {
+		Send('{b down}') ; Send the key-down event for 'n'
+		KeyWait("F13")     ; Wait until the F15 key is physically released
+		Send('{b up}')   ; Send the key-up event for 'n'
+	}
+	else
 		return
 }
+
+; F13 & WheelUp:: {
+; 	if (stashOpen())
+; 		stashNext()
+; 	else
+; 		return
+; }
+
+; F13 & WheelDown:: {
+; 	if (stashOpen())
+; 		stashPrev()
+; 	else
+; 		return
+; }
 
 ScrollLock & F13:: {
 	if (stashOpen())
@@ -41,34 +65,48 @@ PrintScreen & F14:: {
 		paste()
 }
 
-F15:: {
-	if (stashOpen()) {
-		Send('{n down}') ; Send the key-down event for 'n'
-		KeyWait("F15")     ; Wait until the F15 key is physically released
-		Send('{n up}')   ; Send the key-up event for 'n'
-	}
-	else
-		return
-}
+; F15:: {
+; 	if (stashOpen()) {
+; 		Send('{b down}') ; Send the key-down event for 'n'
+; 		KeyWait("F15")     ; Wait until the F15 key is physically released
+; 		Send('{b up}')   ; Send the key-up event for 'n'
+; 	}
+; 	else
+; 		return
+; }
 
-PrintScreen & F15:: {
-	if (stashOpen()) {
-		Send('{c down}') ; Send the key-down event for 'c'
-		KeyWait("F15")     ; Wait until the F15 key is physically released
-		Send('{c up}')   ; Send the key-up event for 'c'
-	}
-	else
-		return
-}
+; PrintScreen & F15:: {
+; 	if (stashOpen()) {
+; 		Send('{c down}') ; Send the key-down event for 'c'
+; 		KeyWait("F15")     ; Wait until the F15 key is physically released
+; 		Send('{c up}')   ; Send the key-up event for 'c'
+; 	}
+; 	else
+; 		return
+; }
 
 ScrollLock & F15:: {
-	if (stashOpen())
-		sendStashTag("MMF")
+	if (stashOpen()) {
+		Send('{v down}') ; Send the key-down event for 'v'
+		KeyWait("F15")     ; Wait until the F15 key is physically released
+		Send('{v up}')   ; Send the key-up event for 'v'
+	}
+	else
+		return
 }
 
 F16:: {
-	if (stashOpen())
-		; stashPrev()
+	if (stashOpen()) {
+		Send('{v down}') ; Send the key-down event for 'v'
+		KeyWait("F16")     ; Wait until the F15 key is physically released
+		Send('{v up}')   ; Send the key-up event for 'v'
+	}
+	else
+		return
+}
+
+PrintScreen & F16:: {
+	if (sendStashTag("SHARED"))
 		return
 	else
 		CopySwitchPaste()
@@ -97,8 +135,29 @@ F18 & WheelUp:: BrowserFunctions.nextTab()
 
 F18 & WheelDown:: BrowserFunctions.prevTab()
 
+F18 & LButton:: {
+	if (stashOpen())
+		stashPrev()
+	else
+		return
+}
+
+F18 & RButton:: {
+	if (stashOpen())
+		stashNext()
+	else
+		return
+}
+
 PrintScreen & F18:: {
 	if (sendStashTag("SHARED"))
+		return
+	else
+		BrowserFunctions.bitwardenFill()
+}
+
+ScrollLock & F18:: {
+	if (shiftLeft(true))
 		return
 	else
 		BrowserFunctions.bitwardenFill()

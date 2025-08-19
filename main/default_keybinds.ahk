@@ -17,10 +17,10 @@
 	; F15:: Send("{Up}")
 
 	;------------------------------------------ No command for F16
-	F16::
-	{
-	;    ToolTip("No command for F16", 10, 10)
-	}
+	; F16::
+	; {
+	; ;    ToolTip("No command for F16", 10, 10)
+	; }
 
 	;------------------------------------------ Switch to previous desktop (Ctrl+Win+Left)
 	; PrintScreen & F16:: desktopLeft()
