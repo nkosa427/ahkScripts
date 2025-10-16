@@ -102,14 +102,14 @@ F16:: {
 		Send('{v up}')   ; Send the key-up event for 'v'
 	}
 	else
-		return
+		CopySwitchPaste()
 }
 
 PrintScreen & F16:: {
 	if (sendStashTag("SHARED"))
 		return
 	else
-		CopySwitchPaste()
+		return
 }
 
 F17:: {
@@ -178,6 +178,15 @@ PrintScreen & F20:: Send("^r")
 
 F21:: Send("^t")
 PrintScreen & F21:: Send("^w")
+
+F24:: {
+	if (stashOpen()) {
+		Send("{F11}")
+	} else {
+		Send("^x")
+	}
+	
+}
 
 PrintScreen & F24:: duplicateTab()
 
