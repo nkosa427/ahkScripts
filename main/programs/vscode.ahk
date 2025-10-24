@@ -1,5 +1,5 @@
 
-#HotIf WinActive("ahk_exe Code.exe")
+#HotIf WinActive("ahk_exe Code.exe") or WinActive("ahk_exe Code - Insiders.exe")
 F13:: Send("!{F12}")	; Peek Definition
 
 F18 & WheelUp:: Send("^{PgDn}")   ; Next tab

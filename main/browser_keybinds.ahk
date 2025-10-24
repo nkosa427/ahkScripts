@@ -20,7 +20,7 @@ F13:: {
 PrintScreen & F13:: {
 	if (stashOpen()) {
 		Send('{b down}') ; Send the key-down event for 'n'
-		KeyWait("F13")     ; Wait until the F15 key is physically released
+		KeyWait("F13")     ; Wait until the F13 key is physically released
 		Send('{b up}')   ; Send the key-up event for 'n'
 	}
 	else
@@ -65,34 +65,24 @@ PrintScreen & F14:: {
 		paste()
 }
 
-; F15:: {
-; 	if (stashOpen()) {
-; 		Send('{b down}') ; Send the key-down event for 'n'
-; 		KeyWait("F15")     ; Wait until the F15 key is physically released
-; 		Send('{b up}')   ; Send the key-up event for 'n'
-; 	}
-; 	else
-; 		return
-; }
-
-; PrintScreen & F15:: {
-; 	if (stashOpen()) {
-; 		Send('{c down}') ; Send the key-down event for 'c'
-; 		KeyWait("F15")     ; Wait until the F15 key is physically released
-; 		Send('{c up}')   ; Send the key-up event for 'c'
-; 	}
-; 	else
-; 		return
-; }
-
-ScrollLock & F15:: {
+F15:: {
 	if (stashOpen()) {
-		Send('{v down}') ; Send the key-down event for 'v'
-		KeyWait("F15")     ; Wait until the F15 key is physically released
-		Send('{v up}')   ; Send the key-up event for 'v'
-	}
-	else
-		return
+		Send('r')
+		Sleep(10)
+		Send('0')
+		Sleep(10)
+		Send('1')
+	} 
+	return
+}
+
+PrintScreen & F15:: {
+	if (stashOpen()) {
+		Send('r')
+		Sleep(10)
+		Send('``')
+	} 
+	return
 }
 
 F16:: {
