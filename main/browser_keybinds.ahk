@@ -193,6 +193,10 @@ class BrowserFunctions {
 	}
 
 	static bitwardenFill() {
-		Send("^+l")
+		if (WinActive("ahk_exe msedge.exe")) {
+			Send("^+9")
+		} else {
+			Send("^+l")
+		}
 	}
 }
