@@ -118,8 +118,8 @@ CopySwitchPaste() {
     title := WinGetTitle("A")
 
 	if !(InStr(title, "Stash - Chromium")) {
-		; Store the title of the currently active window
-		originalTitle := WinGetTitle("A")
+		; Store the ID of the currently active window
+		originalID := WinGetID("A")
 
 		; Send Ctrl+C to copy
 		Send("^c")
@@ -143,17 +143,17 @@ CopySwitchPaste() {
 		}
 
 		; Switch back to the previously active window
-		Send("!{Tab}")
+		WinActivate("ahk_id " . originalID)
 	}
 }
 
 CopySwitchPasteMod() {
 	; Get the active window's title
-    title := WinGetTitle("A")
+		  title := WinGetTitle("A")
 
 	if !(InStr(title, "Stash - Chromium")) {
-		; Store the title of the currently active window
-		originalTitle := WinGetTitle("A")
+		; Store the ID of the currently active window
+		originalID := WinGetID("A")
 
 		; Send Ctrl+C to copy
 		Send("^c")
@@ -179,6 +179,6 @@ CopySwitchPasteMod() {
 		}
 
 		; Switch back to the previously active window
-		Send("!{Tab}")
+		WinActivate("ahk_id " . originalID)
 	}
 }
