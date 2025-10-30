@@ -65,7 +65,7 @@ PrintScreen & F14:: {
 		paste()
 }
 
-F15:: {
+PrintScreen & F15:: {
 	if (stashOpen()) {
 		Send('r')
 		Sleep(10)
@@ -76,7 +76,7 @@ F15:: {
 	return
 }
 
-PrintScreen & F15:: {
+ScrollLock & F15:: {
 	if (stashOpen()) {
 		Send('r')
 		Sleep(10)
