@@ -114,37 +114,34 @@ getActiveWindowExe() {
 
 ; Define a function to perform the copy, switch, and paste
 CopySwitchPaste() {
-	; Get the active window's title
-    title := WinGetTitle("A")
+	
 
-	if !(InStr(title, "Stash - Chromium")) {
-		; Store the ID of the currently active window
-		originalID := WinGetID("A")
+	; Send Ctrl+C to copy
+	Send("^c")
 
-		; Send Ctrl+C to copy
-		Send("^c")
-		Sleep(50)  ; Wait for the copying operation to complete
+	; Store the ID of the currently active window
+	originalID := WinGetID("A")
+	; Sleep(50)  ; Wait for the copying operation to complete
 
-		; Attempt to activate the "Folder Tree Viewer" window
-		if WinExist("Folder Tree Viewer") {
-			; Activate the "Folder Tree Viewer" window
-			WinActivate("Folder Tree Viewer")
-			WinWaitActive("Folder Tree Viewer")  ; Wait for it to become active
-			Sleep(50)
+	; ; Attempt to activate the "Folder Tree Viewer" window
+	; if WinExist("Folder Tree Viewer") {
+		; Activate the "Folder Tree Viewer" window
+		WinActivate("Folder Tree Viewer")
+		WinWaitActive("Folder Tree Viewer")  ; Wait for it to become active
+		; Sleep(50)
 
-			; Send Ctrl+V to paste
-			paste()
-			Sleep(50)
-			Send("{Enter}")
-			Sleep(50)
-		} else {
-			; If the "Folder Tree Viewer" window not found, show a message
-			MsgBox("The 'Folder Tree Viewer' window is not open.")
-		}
+		; Send Ctrl+V to paste
+		paste()
+		Sleep(50)
+		Send("{Enter}")
+		Sleep(50)
+	; } else {
+	; 	; If the "Folder Tree Viewer" window not found, show a message
+	; 	MsgBox("The 'Folder Tree Viewer' window is not open.")
+	; }
 
-		; Switch back to the previously active window
-		WinActivate("ahk_id " . originalID)
-	}
+	; Switch back to the previously active window
+	WinActivate("ahk_id " . originalID)
 }
 
 CopySwitchPasteMod() {
