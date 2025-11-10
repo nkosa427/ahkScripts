@@ -81,8 +81,48 @@ ScrollLock & F15:: {
 		Send('r')
 		Sleep(10)
 		Send('``')
-	} 
+	}
 	return
+}
+
+F15:: {
+	if (!stashOpen()) {
+		return
+	}
+
+	; Create GUI menu
+	myGui := Gui("+AlwaysOnTop -Caption +Border")
+	myGui.SetFont("s12")
+
+	; Add button controls for numbers 1-10
+	Loop 10 {
+		num := A_Index
+		yPos := 10 + (A_Index - 1) * 30
+		btn := myGui.Add("Button", "x10 y" . yPos . " w30 h30", num)
+		btn.OnEvent("Click", SendNumber.Bind(num))
+	}
+
+	; Show GUI centered
+	myGui.Show("xCenter yCenter w50 h320")
+
+	; Wait for F15 release
+	KeyWait("F15")
+
+	; If F15 released without clicking, destroy GUI
+	myGui.Destroy()
+
+	SendNumber(num, *) {
+		myGui.Destroy()
+		; Activate the Stash window
+		WinActivate("Stash - Chromium")
+		Sleep(50)
+		Send("r")
+		Sleep(10)
+		for digit in StrSplit(num) {
+			Send(digit)
+			Sleep(10)
+		}
+	}
 }
 
 F16:: {
