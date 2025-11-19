@@ -94,21 +94,31 @@ F15:: {
 	myGui := Gui("+AlwaysOnTop -Caption +Border")
 	myGui.SetFont("s12")
 
-	; Add button controls for numbers 1-10
-	Loop 10 {
-		num := A_Index
-		yPos := 10 + (A_Index - 1) * 30
-		btn := myGui.Add("Button", "x10 y" . yPos . " w30 h30", num)
+	; Array to store buttons
+	buttons := []
+
+	; Add button controls for numbers 0-99 in 10x10 grid
+	Loop 100 {
+		num := A_Index - 1
+		row := Floor(num / 10)
+		col := Mod(num, 10)
+		xPos := 10 + col * 30
+		yPos := 10 + row * 30
+		displayText := Format("{:.1f}", num / 10)
+		btn := myGui.Add("Button", "x" . xPos . " y" . yPos . " w30 h30", displayText)
 		btn.OnEvent("Click", SendNumber.Bind(num))
+		buttons.Push({btn: btn, num: num})
 	}
 
-	; Show GUI centered
-	myGui.Show("xCenter yCenter w50 h320")
+	; Get mouse position
+	MouseGetPos(&xpos, &ypos)
+	; Show GUI at mouse position
+	myGui.Show("x" . xpos . " y" . ypos . " w310 h310")
 
 	; Wait for F15 release
 	KeyWait("F15")
 
-	; If F15 released without clicking, destroy GUI
+	; Destroy GUI when F15 is released
 	myGui.Destroy()
 
 	SendNumber(num, *) {
@@ -118,7 +128,8 @@ F15:: {
 		Sleep(50)
 		Send("r")
 		Sleep(10)
-		for digit in StrSplit(num) {
+		numStr := (num < 10 ? "0" : "") . num
+		for digit in StrSplit(numStr) {
 			Send(digit)
 			Sleep(10)
 		}
