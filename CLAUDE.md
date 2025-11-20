@@ -32,6 +32,9 @@ When making changes, please adhere to the following Git workflow:
 
 Don't ask me for branch names or commit log suggestions, etc. Just make it easy to understand if we ever need to go back.
 
+## Adding keybinds
+When I ask to add a keybind to a game/program, search to see if that file already exists. It should be linked in main.ahk so use that as the starting point.
+
 ## Keybinding Conventions
 
 -   All game or program-specific keybinds should be enclosed within a `#HotIf WinActive("ahk_exe ProcessName.exe")` block, ending with `#HotIf`.
