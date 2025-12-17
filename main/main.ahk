@@ -5,6 +5,7 @@ SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 
 ; Include default keybinds
 #include "%A_ScriptDir%\default_keybinds.ahk"
+#include "%A_ScriptDir%\programs\stash.ahk" ; Include Stash keybinds
 #include "%A_ScriptDir%\browser_keybinds.ahk" ; Include browser keybinds
 
 ;;;;;;;;;;;;;;;;;;;;;;;; PROGRAM FILES ;;;;;;;;;;;;;;;;;;;;;;;;
