@@ -34,51 +34,12 @@ ScrollLock & F15:: {
 	Send('``')
 }
 
-F15:: {
-	; Create GUI menu
-	myGui := Gui("+AlwaysOnTop -Caption +Border")
-	myGui.SetFont("s12")
+F15 & WheelUp:: {
+	Send("+]")
+}
 
-	; Array to store buttons
-	buttons := []
-
-	; Add button controls for numbers 0-99 in 10x10 grid
-	Loop 100 {
-		num := A_Index - 1
-		row := Floor(num / 10)
-		col := Mod(num, 10)
-		xPos := 10 + col * 30
-		yPos := 10 + row * 30
-		displayText := Format("{:.1f}", num / 10)
-		btn := myGui.Add("Button", "x" . xPos . " y" . yPos . " w30 h30", displayText)
-		btn.OnEvent("Click", SendNumber.Bind(num))
-		buttons.Push({btn: btn, num: num})
-	}
-
-	; Get mouse position
-	MouseGetPos(&xpos, &ypos)
-	; Show GUI at mouse position
-	myGui.Show("x" . xpos . " y" . ypos . " w310 h310")
-
-	; Wait for F15 release
-	KeyWait("F15")
-
-	; Destroy GUI when F15 is released
-	myGui.Destroy()
-
-	SendNumber(num, *) {
-		myGui.Destroy()
-		; Activate the Stash window
-		WinActivate("Stash - Chromium")
-		Sleep(50)
-		Send("r")
-		Sleep(10)
-		numStr := (num < 10 ? "0" : "") . num
-		for digit in StrSplit(numStr) {
-			Send(digit)
-			Sleep(10)
-		}
-	}
+F15 & WheelDown:: {
+	Send("+[")
 }
 
 F16:: {
@@ -98,6 +59,14 @@ ScrollLock & F17:: backspace()
 F18 & LButton:: stashPrev()
 
 F18 & RButton:: stashNext()
+
+F18 & WheelUp:: {
+	Send("!]")
+}
+
+F18 & WheelDown:: {
+	Send("![")
+}
 
 PrintScreen & F18:: sendStashTag("SHARED")
 
