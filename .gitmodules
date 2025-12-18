@@ -1,0 +1,3 @@
+[submodule "main/Lib/UIA-v2"]
+	path = main/Lib/UIA-v2
+	url = https://github.com/Descolada/UIA-v2
