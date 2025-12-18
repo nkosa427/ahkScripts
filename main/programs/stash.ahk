@@ -35,11 +35,11 @@ ScrollLock & F15:: {
 }
 
 F15 & WheelUp:: {
-	Send("+]")
+	Send("!]")
 }
 
 F15 & WheelDown:: {
-	Send("+[")
+	Send("![")
 }
 
 F16:: {
@@ -60,13 +60,6 @@ F18 & LButton:: stashPrev()
 
 F18 & RButton:: stashNext()
 
-F18 & WheelUp:: {
-	Send("!]")
-}
-
-F18 & WheelDown:: {
-	Send("![")
-}
 
 PrintScreen & F18:: sendStashTag("SHARED")
 
@@ -80,6 +73,14 @@ ScrollLock & F19:: {
 	Send("n")
 }
 
-F24:: Send("{F11}")
+F24 & WheelUp:: {
+	Send("+]")
+}
+
+F24 & WheelDown:: {
+	Send("+[")
+}
+
+PrintScreen & F24:: Send("{F11}")
 
 #HotIf
