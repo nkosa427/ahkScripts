@@ -38,6 +38,8 @@ SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 #include "%A_ScriptDir%\games\KingdomCome.ahk" ; Include Kingdom Come: Deliverance 2 keybinds
 
 ;;;;;;;;;;;;;;;;;;;;;;;; FUNCTIONS ;;;;;;;;;;;;;;;;;;;;;;;;
+#include "%A_ScriptDir%\Lib\UIA-v2\Lib\UIA.ahk"
+#include "%A_ScriptDir%\Lib\UIA-v2\Lib\UIA_Browser.ahk"
 #include "%A_ScriptDir%\functions\windows_functions.ahk" ; Include Windows-specific functions
 #include "%A_ScriptDir%\functions\game_functions.ahk" ; Include game-specific functions
 #include "%A_ScriptDir%\functions\stash_functions.ahk" ; Include Stash-specific functions
