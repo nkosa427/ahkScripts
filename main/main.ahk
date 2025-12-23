@@ -36,6 +36,7 @@ SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 #include "%A_ScriptDir%\games\death_stranding.ahk" ; Include Death Stranding keybinds
 #include "%A_ScriptDir%\games\cyberpunk2077.ahk" ; Include Cyberpunk 2077 keybinds
 #include "%A_ScriptDir%\games\KingdomCome.ahk" ; Include Kingdom Come: Deliverance 2 keybinds
+#include "%A_ScriptDir%\games\oxygennotincluded.ahk" ; Include Oxygen Not Included keybinds
 
 ;;;;;;;;;;;;;;;;;;;;;;;; FUNCTIONS ;;;;;;;;;;;;;;;;;;;;;;;;
 #include "%A_ScriptDir%\Lib\UIA-v2\Lib\UIA.ahk"
