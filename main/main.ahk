@@ -5,7 +5,6 @@ SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 
 ; Include default keybinds
 #include "%A_ScriptDir%\default_keybinds.ahk"
-#include "%A_ScriptDir%\programs\stash.ahk" ; Include Stash keybinds
 #include "%A_ScriptDir%\browser_keybinds.ahk" ; Include browser keybinds
 
 ;;;;;;;;;;;;;;;;;;;;;;;; PROGRAM FILES ;;;;;;;;;;;;;;;;;;;;;;;;
@@ -43,7 +42,6 @@ SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 #include "%A_ScriptDir%\Lib\UIA-v2\Lib\UIA_Browser.ahk"
 #include "%A_ScriptDir%\functions\windows_functions.ahk" ; Include Windows-specific functions
 #include "%A_ScriptDir%\functions\game_functions.ahk" ; Include game-specific functions
-#include "%A_ScriptDir%\functions\stash_functions.ahk" ; Include Stash-specific functions
 
 ;;;;;;;;;;;;;;;;;;;;;;;; FUNCTIONS ;;;;;;;;;;;;;;;;;;;;;;;;
 
