@@ -4,6 +4,7 @@
 currentFKey := 1
 
 F14:: Send("b")
+F15:: Send("p")
 F19:: Send("g")
 PrintScreen & F19:: Send("x")
 F21:: Send("{Space}")

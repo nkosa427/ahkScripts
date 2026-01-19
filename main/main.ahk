@@ -126,10 +126,10 @@ CopySwitchPaste() {
 
 	; Store the ID of the currently active window
 	originalID := WinGetID("A")
-	; Sleep(50)  ; Wait for the copying operation to complete
+	Sleep(50)  ; Wait for the copying operation to complete
 
 	; ; Attempt to activate the "Folder Tree Viewer" window
-	; if WinExist("Folder Tree Viewer") {
+	if WinExist("Folder Tree Viewer") {
 		; Activate the "Folder Tree Viewer" window
 		WinActivate("Folder Tree Viewer")
 		WinWaitActive("Folder Tree Viewer")  ; Wait for it to become active
@@ -143,7 +143,7 @@ CopySwitchPaste() {
 	; } else {
 	; 	; If the "Folder Tree Viewer" window not found, show a message
 	; 	MsgBox("The 'Folder Tree Viewer' window is not open.")
-	; }
+	}
 
 	; Switch back to the previously active window
 	WinActivate("ahk_id " . originalID)
