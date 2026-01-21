@@ -1,5 +1,7 @@
 #HotIf WinActive("ahk_exe Factorio.exe")
 F13:: Send("r")
+F15 & WheelUp:: Send("!{Right}")
+F15 & WheelDown:: Send("!{Left}")
 F16:: Send("+r")
 F18:: Send("q")
 F21:: Send("e")
