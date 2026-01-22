@@ -42,6 +42,7 @@ SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 #include "%A_ScriptDir%\Lib\UIA-v2\Lib\UIA_Browser.ahk"
 #include "%A_ScriptDir%\functions\windows_functions.ahk" ; Include Windows-specific functions
 #include "%A_ScriptDir%\functions\game_functions.ahk" ; Include game-specific functions
+#include "%A_ScriptDir%\functions\credentials.ahk" ; Include credential management system
 
 ;;;;;;;;;;;;;;;;;;;;;;;; FUNCTIONS ;;;;;;;;;;;;;;;;;;;;;;;;
 

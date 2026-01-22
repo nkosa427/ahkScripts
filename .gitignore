@@ -1,2 +1,17 @@
-context_portal
-main/.claude/settings.local.json
+# Environment files - contain sensitive credentials
+.env
+
+# Test directories
+Test/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Backup files
+*.bak
+*.backup
+
+# AutoHotkey cache
+*.ahk.cache
