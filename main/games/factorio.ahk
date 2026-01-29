@@ -10,6 +10,7 @@ F16 & WheelUp:: Send("{Up}")
 F16 & WheelDown:: Send("{Down}")
 F18:: Send("q")
 F21:: Send("e")
+PrintScreen & F21:: Send("!d")
 F24:: Send("m")
 PrintScreen & F24:: Send("b")
 #HotIf
