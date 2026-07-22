@@ -1,5 +1,6 @@
 #HotIf WinActive("ahk_exe EscapeFromTarkov.exe")
-ScrollLock & F13:: Send("y")
+PrintScreen & F13:: Send("y")
+F18:: Send("t")
 F21:: Send("{Tab}")
 PrintScreen & F23:: Send("{F11}")
 F24:: {
