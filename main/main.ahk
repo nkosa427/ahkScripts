@@ -38,6 +38,8 @@ SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 #include "%A_ScriptDir%\games\KingdomCome.ahk" ; Include Kingdom Come: Deliverance 2 keybinds
 #include "%A_ScriptDir%\games\megaquarium.ahk" ; Include Megaquarium keybinds
 #include "%A_ScriptDir%\games\oxygennotincluded.ahk" ; Include Oxygen Not Included keybinds
+#include "%A_ScriptDir%\games\rvthereyet.ahk" ; Include RV There Yet keybinds
+#include "%A_ScriptDir%\games\timberborn.ahk" ; Include Timberborn keybinds
 
 ;;;;;;;;;;;;;;;;;;;;;;;; FUNCTIONS ;;;;;;;;;;;;;;;;;;;;;;;;
 #include "%A_ScriptDir%\Lib\UIA-v2\Lib\UIA.ahk"
