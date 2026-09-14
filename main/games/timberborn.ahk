@@ -2,5 +2,10 @@
 F13:: Send("1")
 F14:: Send("2")
 F15:: Send("3")
+F16:: Send("{Space}")
+F18:: Send("{LShift down}")
+F18 up:: Send("{LShift up}")
+F21:: Send("{LCtrl down}")
+F21 up:: Send("{LCtrl up}")
 PrintScreen & F17:: Send("{Delete}")
 #HotIf
