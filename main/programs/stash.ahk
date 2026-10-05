@@ -12,11 +12,11 @@ PrintScreen & F13:: {
 	Send('{b up}')   ; Send the key-up event for 'n'
 }
 
-ScrollLock & F13:: paste()
+Pause & F13:: paste()
 
 F14:: shiftRight(true)
 
-ScrollLock & F14:: copy()
+Pause & F14:: copy()
 
 PrintScreen & F14:: shiftRight(false)
 
@@ -28,7 +28,7 @@ PrintScreen & F15:: {
 	Send('1')
 }
 
-ScrollLock & F15:: {
+Pause & F15:: {
 	Send('r')
 	Sleep(10)
 	Send('``')
@@ -54,7 +54,7 @@ F17:: shiftLeft(true)
 
 PrintScreen & F17:: shiftLeft(false)
 
-ScrollLock & F17:: backspace()
+Pause & F17:: backspace()
 
 F18 & LButton:: stashPrev()
 
@@ -63,9 +63,9 @@ F18 & RButton:: stashNext()
 
 PrintScreen & F18:: sendStashTag("SHARED")
 
-ScrollLock & F18:: shiftLeft(true)
+Pause & F18:: shiftLeft(true)
 
-ScrollLock & F19:: {
+Pause & F19:: {
 	sendStashTag("AAUnwanted")
 	Sleep(25)
 	Send("p")

@@ -17,7 +17,7 @@ This document provides instructions for AI agents (like Roo or Claude) when addi
 
 ### Trigger Keys
 - **Primary Keys**: `F13` through `F24`.
-- **Custom Modifiers**: `PrintScreen` and `ScrollLock` are frequently used as modifiers.
+- **Custom Modifiers**: `PrintScreen` and `Pause` are frequently used as modifiers. `Pause` is reserved for AHK (bound to a mouse button in Razer Synapse) and never reaches Windows on its own.
 - **Combinations**: Use the `&` operator for custom modifiers (e.g., `PrintScreen & F14::`).
 - **Mouse Wheel**: Combinations like `F20 & WheelUp::` are common for volume or navigation.
 
