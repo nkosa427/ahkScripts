@@ -4,14 +4,14 @@ This document provides instructions for AI agents (like Roo or Claude) when addi
 
 ## Project Overview
 - **Language**: AutoHotkey (AHK) v2.0
-- **Main Entry Point**: [`main/main.ahk`](main/main.ahk)
+- **Main Entry Point**: [`main.ahk`](main.ahk)
 - **Structure**:
-  - [`main/games/`](main/games/): Game-specific keybinds.
-  - [`main/programs/`](main/programs/): Program-specific keybinds.
-  - [`main/functions/`](main/functions/): Reusable logic and helper functions.
-  - [`main/Lib/`](main/Lib/): External libraries (e.g., UIA-v2).
-  - [`main/default_keybinds.ahk`](main/default_keybinds.ahk): Global default keybinds.
-  - [`main/browser_keybinds.ahk`](main/browser_keybinds.ahk): Browser-specific keybinds.
+  - [`games/`](games/): Game-specific keybinds.
+  - [`programs/`](programs/): Program-specific keybinds.
+  - [`functions/`](functions/): Reusable logic and helper functions.
+  - [`Lib/`](Lib/): External libraries (e.g., UIA-v2).
+  - [`default_keybinds.ahk`](default_keybinds.ahk): Global default keybinds.
+  - [`browser_keybinds.ahk`](browser_keybinds.ahk): Browser-specific keybinds.
 
 ## Keybinding Standards
 
@@ -29,11 +29,11 @@ This document provides instructions for AI agents (like Roo or Claude) when addi
 ### File Organization & Ordering
 - **Ascending Order**: Keybinds within a file should be sorted by the primary key (e.g., `F13` before `F14`).
 - **Modifier Placement**: Modified versions of a key (e.g., `PrintScreen & F13`) should be placed immediately after the base keybind (`F13`).
-- **Modularity**: Keep game-specific logic in `main/games/` and program-specific logic in `main/programs/`.
+- **Modularity**: Keep game-specific logic in `games/` and program-specific logic in `programs/`.
 
 ## Adding a New Script
-1. **Create the File**: Place it in `main/games/` or `main/programs/` as appropriate.
-2. **Include in Main**: Add a `#include` directive in [`main/main.ahk`](main/main.ahk).
+1. **Create the File**: Place it in `games/` or `programs/` as appropriate.
+2. **Include in Main**: Add a `#include` directive in [`main.ahk`](main.ahk).
 3. **Use Boilerplate**:
    ```autohotkey
    #HotIf WinActive("ahk_exe example.exe")
@@ -46,7 +46,7 @@ This document provides instructions for AI agents (like Roo or Claude) when addi
    ```
 
 ## Common Functions & Libraries
-- **Global Helpers**: `copy()`, `paste()`, `enter()`, `backspace()` are defined in [`main/main.ahk`](main/main.ahk).
+- **Global Helpers**: `copy()`, `paste()`, `enter()`, `backspace()` are defined in [`main.ahk`](main.ahk).
 - **Window Helpers**: `winHasTitle(name)`, `activateIfOpen(exeName)`.
 - **UIA Support**: The project includes `UIA-v2` for advanced UI automation. Use `#include "%A_ScriptDir%\Lib\UIA-v2\Lib\UIA.ahk"` if needed.
 
