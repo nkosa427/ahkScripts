@@ -26,7 +26,7 @@
 	; PrintScreen & F16:: desktopLeft()
 
 	;------------------------------------------ Go the first desktop (Ctrl+Win+Left several times)
-	ScrollLock & F16:: goToFirstDesktop()
+	Pause & F16:: goToFirstDesktop()
 
 	;------------------------------------------ Enter (Enter)
 	F17:: enter()
@@ -68,7 +68,7 @@
 
 
 	;------------------------------------------ Delete (del)
-	ScrollLock & F20:: Send("{Del}")
+	Pause & F20:: Send("{Del}")
 
 	;------------------------------------------ No command for F21
 	;F21::
@@ -104,9 +104,11 @@
 	; PrintScreen & F24:: {
 	; }
 
-	; ScrollLock:: {
-	; }
+	;------------------------------------------ Pause is reserved as an AHK modifier (mouse button in Synapse)
+	; Swallow it on its own (and with any modifiers held) so Windows/apps never receive Pause/Break
+	*Pause:: return
+
 	; PrintScreen:: {
 	; }
-	; PrintScreen & ScrollLock:: {
+	; PrintScreen & Pause:: {
 	; }
