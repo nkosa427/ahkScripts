@@ -25,7 +25,7 @@ F18 & WheelDown:: BrowserFunctions.prevTab()
 
 PrintScreen & F18:: BrowserFunctions.bitwardenFill()
 
-Pause & F18:: BrowserFunctions.bitwardenFill()
+AppsKey & F18:: BrowserFunctions.bitwardenFill()
 
 PrintScreen & F20:: Send("^r")
 
@@ -36,7 +36,7 @@ F24:: Send("^x")
 
 PrintScreen & F24:: duplicateTab()
 
-Pause & F24:: Send("^+t")
+AppsKey & F24:: Send("^+t")
 #HotIf
 
 class BrowserFunctions {
