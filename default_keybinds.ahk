@@ -26,7 +26,7 @@
 	; PrintScreen & F16:: desktopLeft()
 
 	;------------------------------------------ Go the first desktop (Ctrl+Win+Left several times)
-	Pause & F16:: goToFirstDesktop()
+	AppsKey & F16:: goToFirstDesktop()
 
 	;------------------------------------------ Enter (Enter)
 	F17:: enter()
@@ -68,7 +68,7 @@
 
 
 	;------------------------------------------ Delete (del)
-	Pause & F20:: Send("{Del}")
+	AppsKey & F20:: Send("{Del}")
 
 	;------------------------------------------ No command for F21
 	;F21::
@@ -104,11 +104,11 @@
 	; PrintScreen & F24:: {
 	; }
 
-	;------------------------------------------ Pause is reserved as an AHK modifier (mouse button in Synapse)
-	; Swallow it on its own (and with any modifiers held) so Windows/apps never receive Pause/Break
-	*Pause:: return
+	;------------------------------------------ AppsKey (Menu key) is reserved as an AHK modifier (mouse button in Synapse)
+	; Swallow it on its own (and with any modifiers held) so Windows/apps never open a context menu from it
+	*AppsKey:: return
 
 	; PrintScreen:: {
 	; }
-	; PrintScreen & Pause:: {
+	; PrintScreen & AppsKey:: {
 	; }
